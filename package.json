@@ -1,0 +1,16 @@
+{
+  "name": "openai-proxy-backend",
+  "version": "1.0.0",
+  "description": "Backend proxy for OpenAI API to protect API key",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "node-fetch": "^3.3.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5"
+  }
+} 

@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio :: [Isaac Sandiumenge]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #1a1a2e; /* Azul noche profundo */
+            --bg-medium: #16213e; /* Azul oscuro más suave */
+            --bg-light: #0f3460; /* Azul más claro para acentos */
+            --primary-accent: #e94560; /* Coral vibrante */
+            --secondary-accent: #53a8b6; /* Turquesa suave */
+            --text-light: #e0e0e0;
+            --text-dark: #1a1a2e;
+            --text-muted: #a0a0a0;
+            --font-primary: 'Poppins', sans-serif;
+            --font-code: 'Roboto Mono', monospace;
+            --transition-speed: 0.3s;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            zoom: 0.67; /* Aplicamos el zoom para escalar la página */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--bg-medium) 0%, var(--bg-dark) 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo {
+            font-family: var(--font-code);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--secondary-accent);
+        }
+
+        .logo.ambidex-logo {
+            font-family: var(--font-primary);
+            font-size: 1.7rem;
+            color: var(--text-light);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: color var(--transition-speed);
+        }
+        .logo.ambidex-logo i.fa-yin-yang {
+            color: var(--primary-accent);
+            margin-right: 10px;
+            font-size: 1.6rem;
+            transition: transform 0.4s ease, color var(--transition-speed);
+        }
+        .logo.ambidex-logo:hover {
+            color: var(--secondary-accent);
+        }
+        .logo.ambidex-logo:hover i.fa-yin-yang {
+            color: var(--secondary-accent);
+            transform: rotate(180deg);
+        }
+
+        /* Estilos para el logo interactivo Legal / Coder copiado de lawyer.html y adaptado */
+        .logo.legal-coder-logo-interactive { /* Contenedor principal del logo */
+            font-family: var(--font-primary); /* Poppins para coder.html */
+            font-weight: 600;
+            font-size: 1.7rem; /* Tamaño del texto del logo */
+            display: flex;
+            align-items: center;
+            text-decoration: none; 
+        }
+
+        .logo.legal-coder-logo-interactive .logo-part {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            padding: 3px 6px;
+            border-radius: 4px;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        .logo.legal-coder-logo-interactive .logo-part .icon-legal,
+        .logo.legal-coder-logo-interactive .logo-part .icon-code {
+            font-size: 1.5rem; /* Tamaño de los iconos */
+            transition: color var(--transition-speed), transform var(--transition-speed);
+        }
+
+        /* Parte Legal */
+        .logo.legal-coder-logo-interactive .logo-legal-part {
+            color: var(--secondary-accent); /* Turquesa para Legal en coder.html */
+        }
+        .logo.legal-coder-logo-interactive .logo-legal-part .icon-legal {
+            color: var(--secondary-accent);
+            margin-right: 8px;
+        }
+        .logo.legal-coder-logo-interactive .logo-legal-part:hover {
+            background-color: rgba(212, 175, 55, 0.15); /* Fondo amarillo dorado claro */
+        }
+        .logo.legal-coder-logo-interactive .logo-legal-part:hover .text-legal {
+            color: #D4AF37; /* Color amarillo dorado para el texto Legal */
+        }
+        .logo.legal-coder-logo-interactive .logo-legal-part:hover .icon-legal {
+            color: #D4AF37; /* Color amarillo dorado para el icono Legal */
+            transform: scale(1.1);
+        }
+
+        /* Parte Coder */
+        .logo.legal-coder-logo-interactive .logo-coder-part {
+            color: var(--primary-accent); /* Coral para Coder en coder.html */
+        }
+        .logo.legal-coder-logo-interactive .logo-coder-part .icon-code {
+            color: var(--primary-accent);
+            margin-left: 8px;
+        }
+        .logo.legal-coder-logo-interactive .logo-coder-part:hover {
+            background-color: rgba(233, 69, 96, 0.15); /* Fondo coral claro */
+            color: var(--primary-accent);
+        }
+        .logo.legal-coder-logo-interactive .logo-coder-part:hover .icon-code {
+            color: var(--primary-accent); /* Icono también coral en hover */
+            transform: scale(1.1);
+        }
+
+        /* Separador */
+        .logo.legal-coder-logo-interactive .logo-separator {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.7rem; /* Mismo tamaño que el texto del logo */
+            padding: 0 5px;
+            transition: color var(--transition-speed);
+            border-radius: 4px; /* Para consistencia de hover si se añade */
+            line-height: 1; /* Para controlar la altura si es necesario */
+        }
+        .logo.legal-coder-logo-interactive .logo-separator:hover {
+            color: var(--primary-accent); /* O el color que prefieras para el hover del separador */
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-accent);
+            transition: width var(--transition-speed) ease-out;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary-accent);
+        }
+        nav ul li a:hover::after, nav ul li a.active::after {
+            width: 100%;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background: url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2069&auto=format&fit=crop') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
+            position: relative;
+        }
+        .hero::before { /* Overlay for readability */
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(26, 26, 46, 0.85); /* --bg-dark with opacity */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white; /* Ensure visibility over image */
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        .hero h1 .highlight {
+            color: var(--primary-accent);
+        }
+        .hero .subtitle {
+            font-family: var(--font-code);
+            font-size: 1.5rem;
+            color: var(--secondary-accent);
+            margin-bottom: 30px;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: rgba(15, 52, 96, 0.5); /* --bg-light with opacity */
+            border-radius: 5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-accent);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.6);
+        }
+        .cta-secondary {
+             background: transparent;
+             border: 2px solid var(--secondary-accent);
+             color: var(--secondary-accent);
+             margin-left: 15px;
+             box-shadow: none;
+        }
+        .cta-secondary:hover {
+            background: var(--secondary-accent);
+            color: var(--bg-dark);
+            box-shadow: 0 4px 15px rgba(83, 168, 182, 0.4);
+        }
+        .cta-balance {
+            display: block; /* Para que ocupe su propia línea o inline-block si quieres junto a otros */
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border: 1px solid var(--text-muted);
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: color var(--transition-speed), border-color var(--transition-speed), background-color var(--transition-speed);
+        }
+        .cta-balance:hover {
+            color: var(--primary-accent);
+            border-color: var(--primary-accent);
+            background-color: rgba(233, 69, 96, 0.1);
+        }
+
+
+        /* Section Styling */
+        section {
+            padding: 60px 0;
+        }
+        section:nth-child(odd) { /* Alternating background for sections */
+             background-color: var(--bg-medium);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--text-light);
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary-accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: opacity var(--transition-speed);
+        }
+        .project-card:hover img {
+            opacity: 0.8;
+        }
+        .project-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        .project-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary-accent);
+            margin-bottom: 10px;
+        }
+        .project-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+        .project-tags {
+            margin-bottom: 15px;
+        }
+        .project-tags .tag {
+            display: inline-block;
+            background-color: var(--bg-medium);
+            color: var(--secondary-accent);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-family: var(--font-code);
+        }
+        .project-links a {
+            color: var(--secondary-accent);
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
+        .project-links a:hover {
+            color: var(--primary-accent);
+        }
+        .project-links a i {
+            margin-right: 5px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .skill-item {
+            background-color: var(--bg-light);
+            padding: 20px 25px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 120px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .skill-item i {
+            font-size: 2.5rem;
+            color: var(--primary-accent);
+            margin-bottom: 10px;
+        }
+        .skill-item span {
+            display: block;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        /* GitHub Section */
+        #github {
+            background-color: var(--bg-medium); /* Consistent with alternating backgrounds */
+        }
+        .github-showcase {
+            text-align: center;
+        }
+        .github-showcase p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text-muted);
+        }
+        /* Consider embedding GitHub activity or repos here using JavaScript if desired */
+
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            text-align: center;
+            padding: 30px 0;
+            border-top: 3px solid var(--bg-light);
+        }
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .footer-links a, .social-media a {
+            color: var(--secondary-accent);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color var(--transition-speed);
+        }
+        .footer-links a:hover, .social-media a:hover {
+            color: var(--primary-accent);
+        }
+        .social-media { margin-top: 10px; }
+        .social-media a i { font-size: 1.5rem; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero .subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2.3rem; }
+        }
+        @media (max-width: 768px) {
+            header .container { flex-direction: column; }
+            .logo { margin-bottom: 15px; }
+            nav ul { justify-content: center; flex-wrap: wrap; }
+            nav ul li { margin: 5px 10px; }
+            .language-selector { margin-top: 10px; margin-left: 0; /* Centrar en móvil o ajustar */ }
+            
+            .hero { min-height: 60vh; padding: 40px 0;}
+            .hero h1 { font-size: 2.2rem; }
+            .hero .subtitle { font-size: 1rem; }
+            .cta-button { font-size: 1rem; padding: 10px 25px; }
+
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Utility class for animations (example) */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInAnimation 0.8s ease-out forwards;
+        }
+        @keyframes fadeInAnimation {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .balance-link-coder {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-accent); /* Coral */
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 1px solid var(--primary-accent); /* Coral */
+            border-radius: 20px;
+            transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        .balance-link-coder:hover {
+            background-color: #FFD700; /* Amarillo dorado más fuerte para el botón en hover */
+            color: var(--bg-dark); /* Texto oscuro para contraste en el botón en hover */
+            border-color: #DAA520; /* Amarillo dorado más oscuro para el borde del botón en hover */
+        }
+
+        .balance-link-coder:active {
+            background-color: #FFD700; /* Amarillo dorado más fuerte para el botón */
+            color: var(--bg-dark); /* Texto oscuro para contraste en el botón */
+            border-color: #DAA520; /* Amarillo dorado más oscuro para el borde del botón */
+        }
+
+        .balance-link-coder:hover i.fa-balance-scale,
+        .balance-link-coder:active i.fa-balance-scale {
+            background-color: white; /* Fondo blanco para el icono */
+            color: black; /* Icono (letra) negro */
+            border: 2px solid #FFD700; /* Borde amarillo fuerte alrededor del icono */
+            border-radius: 50%; /* Para hacerlo redondo */
+            padding: 4px; /* Espacio interno para que el icono no toque el borde */
+            /* Ajustes para asegurar que el icono no cambie mucho de tamaño o posición */
+            display: inline-block; /* Para que padding y border-radius funcionen bien */
+            vertical-align: middle; /* Para alinear mejor con el texto si es necesario */
+            line-height: 1; /* Para controlar la altura si es necesario */
+        }
+
+        /* Estilos para el Widget de Chat Asistente */
+        .chat-widget-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-accent); /* Coral vibrante */
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform var(--transition-speed);
+        }
+        .chat-widget-fab:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-widget-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            max-height: 500px;
+            background-color: var(--bg-medium);
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+            pointer-events: none;
+        }
+        .chat-widget-container.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .chat-widget-header {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            padding: 15px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-widget-header .close-chat {
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .chat-widget-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Espacio entre mensajes */
+        }
+        .chat-message {
+            padding: 10px 15px; /* Aumentado padding */
+            border-radius: 18px; /* Radio general aumentado */
+            max-width: 75%;    /* Reducido max-width */
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: var(--primary-accent); /* Coral vibrante */
+            color: white; /* Texto blanco para mejor contraste */
+            align-self: flex-end;
+            border-radius: 18px 18px 5px 18px; /* Esquina inf-der más aguda */
+        }
+        .bot-message {
+            background-color: #f0f0f0; /* Gris claro neutro */
+            color: var(--text-dark); /* Azul noche profundo (para contraste) */
+            align-self: flex-start;
+            border-radius: 18px 18px 18px 5px; /* Esquina inf-izq más aguda */
+        }
+        .bot-message.error {
+            background-color: #721c24; /* Rojo oscuro para errores */
+            color: #f8d7da; /* Texto claro */
+        }
+
+        .message-content {
+            font-size: 0.95em;
+        }
+
+        .chat-widget-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid var(--bg-light);
+        }
+        .chat-widget-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-primary);
+            margin-right: 8px;
+        }
+        .chat-widget-input input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--primary-accent);
+        }
+        .chat-widget-input button {
+            background-color: var(--primary-accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color var(--transition-speed);
+        }
+        .chat-widget-input button:hover {
+            background-color: var(--secondary-accent);
+            color: white;
+        }
+
+        /* Typing indicator styles */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            padding: 10px 0;
+        }
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background-color: var(--text-dark); /* Color oscuro para los puntos */
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: blink 1.4s infinite both;
+        }
+        .typing-indicator span:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes blink {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            20% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        /* Estilo para la burbuja del bot CUANDO muestra el indicador de "escribiendo" */
+        .bot-message.is-typing {
+            background-color: #f0f0f0; /* Mismo color gris claro que los mensajes del bot */
+            color: var(--text-dark); /* Color de texto oscuro como los mensajes del bot */
+        }
+
+        /* Language Selector Styles */
+        .language-selector {
+            display: flex;
+            align-items: center;
+            margin-left: 20px; /* Ajusta según sea necesario */
+        }
+
+        .language-selector .lang-option {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 8px;
+            border-radius: 4px;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        .language-selector .lang-option.active,
+        .language-selector .lang-option:hover {
+            color: var(--primary-accent);
+            background-color: rgba(233, 69, 96, 0.1); /* Fondo con opacidad del color primario */
+        }
+
+        .language-selector .lang-separator {
+            color: var(--text-muted);
+            margin: 0 5px;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo legal-coder-logo-interactive">
+                <a href="lawyer.html" class="logo-part logo-legal-part" title="Ir a Perfil Legal">
+                    <i class="fas fa-balance-scale icon-legal"></i>
+                    <span class="text-legal">Legal</span>
+                </a>
+                <a href="index.html" class="logo-separator" title="Ir a Home">/</a>
+                <a href="coder.html" class="logo-part logo-coder-part" title="Ir a Perfil Coder">
+                    <span class="text-coder">Coder</span>
+                    <i class="fas fa-code icon-code"></i>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                    <li><a href="#hero" data-i18n="nav.intro">Intro</a></li>
+                    <li><a href="#about" data-i18n="nav.about">About</a></li>
+                    <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+                    <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+                    <li><a href="#github" data-i18n="nav.github">GitHub</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <a href="#" class="lang-option active" data-lang="es">ES</a>
+                <span class="lang-separator">/</span>
+                <a href="#" class="lang-option" data-lang="en">EN</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-content container">
+            <h1 data-i18n="heroGreeting">Hola, soy <span class="highlight">Isaac Sandiumenge</span></h1>
+            <p class="subtitle" data-i18n="heroSubtitle">// Abogado | Aprendiz entusiasta de Programación</p>
+            <p style="margin-bottom: 30px; max-width: 600px; margin-left:auto; margin-right:auto;" data-i18n="heroDescription">Combinando mi profesión legal con mi curiosidad por la tecnología. Explorando el mundo de la programación en mi tiempo libre con la ayuda de IA y recursos autodidactas.</p>
+            <a href="#projects" class="cta-button" data-i18n="heroCtaProjects">Mis Proyectos</a>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2 class="section-title">Mi Viaje en la Programación</h2>
+        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <p class="fade-in" style="animation-delay: 0.2s;">Como abogado que trabaja a tiempo completo, mi tiempo para aprender programación es limitado. Mi interés comenzó con VBA en Excel para automatizar tareas repetitivas, y actualmente estoy dando mis primeros pasos en Python.</p>
+            <p class="fade-in" style="animation-delay: 0.4s;">Mi método de aprendizaje es principalmente práctico, trabajando en proyectos concretos con ayuda de inteligencia artificial. Uso IA como herramienta para avanzar en mis proyectos mientras aprendo de las soluciones que propone, adaptándolas a mis necesidades específicas.</p>
+            <p class="fade-in" style="animation-delay: 0.6s;">Aunque estoy al principio de este camino, me entusiasma crear puentes entre el mundo legal y el tecnológico, desarrollando pequeñas soluciones que faciliten mi trabajo diario como abogado.</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Mis Proyectos</h2>
+            <div class="projects-grid">
+                <!-- Fila Superior -->
+                <!-- Proyecto DrugFindr (Izquierda) -->
+                <div class="project-card fade-in" style="animation-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Proyecto DrugFindr">
+                    <div class="project-content">
+                        <h3>Software regulatorio farmacéutico: DrugFindr</h3>
+                        <p>Aplicación web para la comparación y generación de designaciones farmacéuticas que cumplan con los requisitos de la EMA.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span><span class="tag">C++</span><span class="tag">ChatGPT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="DrugFindr.html" target="_blank"><i class="fas fa-external-link-alt"></i> Ver Proyecto</a>
+                            <!-- <a href="#" target="_blank"><i class="fab fa-github"></i> Ver Código</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto Python (Derecha) -->
+                <div class="project-card fade-in" style="animation-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop" alt="Proyecto Python"> <!-- Imagen añadida -->
+                    <div class="project-content">
+                        <h3>Proyectos con Python</h3>
+                        <p>A medida que surgen necesidades que requiren de análisis y validación de datos exhaustivo, donde la revisión manual no es suficiente, me apoyo en la programación para desarrollar programas que me ayuden a optimizar estos procesos. Pueden consultarlos en mi página de Github.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span><span class="tag">Aprendizaje IA</span><span class="tag">Principiante</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fila Inferior -->
+                <!-- Proyecto TrademarkFindr (Izquierda) -->
+                <div class="project-card fade-in" style="animation-delay: 0.3s;">
+                    <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=2070&auto=format&fit=crop" alt="Proyecto TrademarkFindr">
+                    <div class="project-content">
+                        <h3>TrademarkFindr</h3> <!-- Título cambiado -->
+                        <p>Software alimentado con la API de Trademark View de la EUIPO que permite buscar marcas, controlar marcas que pudieran generar riesgo e incluso resaltar descripción de clases de productos/servicios que podría ser infractora.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span><span class="tag">EUIPO</span><span class="tag">TrademarkView</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto VBA (Derecha) -->
+                <div class="project-card fade-in" style="animation-delay: 0.4s;">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=2064&auto=format&fit=crop" alt="Proyecto VBA en Excel">
+                    <div class="project-content">
+                        <h3>Proyectos con VBA en Excel</h3>
+                        <p></Em>Proyectos de programación de Excel con VBA, yendo desde un sistema de seguimiento de marcas desde la comodidad de una hoja de Excel con envío de notificaciones por correo electrónico si una marca pasa a estar concedida a una calculadora de plazos que predice en qué momento se llevará a cabo cada una de las etapas procesales para la concesión de una marca o procedimiento judicial con tan solo la fecha de presentación de la solicitud de marca o recurso.</p>
+                        <div class="project-tags">
+                            <span class="tag">Excel</span><span class="tag">VBA</span><span class="tag">Facturas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Mis Herramientas de Aprendizaje</h2>
+            <div class="skills-grid">
+                <div class="skill-item fade-in" style="animation-delay: 0.1s;"> <i class="fas fa-file-excel"></i> <span>VBA/Excel (Principiante)</span> </div>
+                <div class="skill-item fade-in" style="animation-delay: 0.2s;"> <i class="fab fa-python"></i> <span>Python (Principiante)</span> </div>
+                <div class="skill-item fade-in" style="animation-delay: 0.3s;"> <i class="fas fa-robot"></i> <span>Programación asistida por IA</span> </div>
+                <div class="skill-item fade-in" style="animation-delay: 0.4s;"> <i class="fas fa-book"></i> <span>Aprendizaje por libros</span> </div>
+                <div class="skill-item fade-in" style="animation-delay: 0.5s;"> <i class="fas fa-project-diagram"></i> <span>Aprendizaje por proyectos</span> </div>
+                <div class="skill-item fade-in" style="animation-delay: 0.6s;"> <i class="fas fa-graduation-cap"></i> <span>Autodidacta</span> </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="github">
+        <div class="container github-showcase">
+            <h2 class="section-title">Mi Aprendizaje</h2>
+            <p>Mi camino de aprendizaje es realista y adaptado a mis limitaciones de tiempo. Estoy explorando la programación mientras mantengo mi carrera legal, utilizando herramientas de IA para avanzar en proyectos prácticos y documentando mi progreso.</p>
+            <a href="https://github.com/Isandi98" target="_blank" class="cta-button github-profile-link"><i class="fab fa-github"></i> Ver mi Progreso en GitHub</a>
+        </div>
+    </section>
+    
+    <section id="contact" class="container" style="text-align: center;">
+         <h2 class="section-title">¿Conectamos?</h2>
+         <p style="max-width: 750px; margin: 0 auto 30px auto; font-size: 1.1rem; color: var(--text-light);">Si mi perfil te ha resultado interesante, estás buscando un profesional con mis habilidades, o simplemente te gustaría explorar posibles colaboraciones o intercambiar ideas, estaré encantado de que te pongas en contacto conmigo a través de los siguientes canales:</p>
+         <div class="contact-buttons" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <a href="mailto:isaac.sandi98@gmail.com" class="cta-button" style="min-width: 180px;"><i class="fas fa-envelope"></i> Enviar un Mensaje</a>
+            <a href="https://www.linkedin.com/in/isaac-yael-sandiumenge-torres-955063232/" target="_blank" class="cta-button cta-secondary" style="min-width: 180px;"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            <a href="https://github.com/Isandi98" target="_blank" class="cta-button cta-secondary" style="background-color: #333; color: white; border-color: #333; min-width: 180px;"><i class="fab fa-github"></i> GitHub</a>
+         </div>
+    </section>
+
+
+    <footer class="coder-footer">
+        <div class="container">
+            <div class="social-media">
+                <a href="https://github.com/Isandi98" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/isaac-yael-sandiumenge-torres-955063232/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <!-- Añade otras redes si es relevante -->
+            </div>
+            <div class="footer-contact-info">
+                <p style="color: var(--text-light);">Isaac Sandiumenge</p>
+                <p><a href="mailto:isaac.sandi98@gmail.com" style="color: var(--secondary-accent);">isaac.sandi98@gmail.com</a></p>
+            </div>
+            <div class="footer-links">
+                <!-- <a href="#privacidad">Política de Privacidad</a> -->
+            </div>
+            <p style="margin-top: 15px; color: var(--text-muted);">&copy; 2025 <a href="#hero" style="color: var(--primary-accent); text-decoration:none;">Isaac Sandiumenge</a>. Todos los derechos reservados.</p>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">"Abogado de día, Programador de noche"</p>
+            <a href="lawyer.html" class="balance-link-coder"><i class="fas fa-balance-scale"></i> Descubre mi lado más jurídico</a>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('header nav a[href^="#"], .hero a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId.length > 1 && document.querySelector(targetId)) {
+                        document.querySelector(targetId).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        document.querySelectorAll('header nav a').forEach(a => a.classList.remove('active'));
+                        const navLink = document.querySelector(`header nav a[href="${targetId}"]`);
+                        if(navLink) navLink.classList.add('active');
+                    }
+                });
+            });
+
+            // Active link highlighting on scroll
+            const sections = document.querySelectorAll("section[id]");
+            const navLinks = document.querySelectorAll("header nav a");
+
+            window.addEventListener("scroll", () => {
+                let current = ""; 
+                if (sections && sections.length > 0) {
+                    sections.forEach((section) => {
+                        const sectionTop = section.offsetTop;
+                        if (pageYOffset >= sectionTop - 100) { 
+                            current = section.getAttribute("id");
+                        }
+                    });
+                }
+
+                navLinks.forEach((a) => {
+                    a.classList.remove("active");
+                    const href = a.getAttribute("href");
+
+                    if (window.location.pathname.endsWith('index.html') && href === 'index.html') {
+                        a.classList.add("active");
+                    } else if (window.location.pathname.endsWith('coder.html')) {
+                        if (href === `#${current}`) {
+                            a.classList.add("active");
+                        }
+                        if (!current && href === "#hero" && sections.length > 0 && pageYOffset < sections[0].offsetTop - 100) {
+                            const introLink = document.querySelector('header nav a[href="#hero"]');
+                            if(introLink) introLink.classList.add('active');
+                        } else if (!current && href === "#hero" && sections.length === 0) {
+                            const introLink = document.querySelector('header nav a[href="#hero"]');
+                            if(introLink) introLink.classList.add('active');
+                        }
+                    } else if (window.location.pathname.endsWith('lawyer.html')) {
+                        if (href === `#${current}`) {
+                            a.classList.add("active");
+                        }
+                    }
+                });
+            });
+
+            // Simple fade-in animation on scroll for elements with .fade-in
+            const fadeInElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeInElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+
+            // Lógica del Widget de Chat
+            const chatFab = document.getElementById('chatWidgetFab');
+            const chatContainer = document.getElementById('chatWidgetContainer');
+            const closeChatButton = document.getElementById('closeChatWidget');
+            const chatMessagesContainer = document.getElementById('chatWidgetMessages');
+            const chatInput = document.getElementById('chatWidgetInput');
+            const chatSendButton = document.getElementById('chatWidgetSend');
+
+            const assistantId = "asst_LzFF1hAzGY6lyqdjdbDMQm0o"; 
+            const BACKEND_URL = "https://replit-backend.fly.dev";
+            let currentThreadId = null;
+
+            async function initializeChatWithAssistant() {
+                if (!currentThreadId) {
+                    console.log("Inicializando chat con el Asistente vía backend...");
+                    addMessageToChat("Conectando con el asistente...", 'bot', true);
+
+                    try {
+                        currentThreadId = await createThread();
+                        console.log("Nuevo Thread ID creado para inicialización (vía backend):", currentThreadId);
+
+                        await addMessageToThread(currentThreadId, "Hola, preséntate."); 
+                        const runId = await createRun(currentThreadId, assistantId);
+                        console.log("Run ID creado para inicialización (vía backend):", runId);
+
+                        await pollRunStatus(currentThreadId, runId);
+                        console.log("Run de inicialización completado (vía backend).");
+
+                        const assistantResponse = await getAssistantMessages(currentThreadId, runId);
+                        updateLastBotMessage(assistantResponse); 
+                    } catch (error) {
+                        console.error("Error inicializando chat con el Asistente (vía backend):", error);
+                        updateLastBotMessage(`Error al conectar con el asistente: ${error.message}. Por favor, intenta abrir y cerrar el chat o recarga la página.`, true);
+                    }
+                }
+            }
+
+            async function createThread() {
+                try {
+                    const response = await fetch(`${BACKEND_URL}/v1/threads`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`Error creando thread (vía backend): ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+                    }
+                    const data = await response.json();
+                    return data.id;
+                } catch (error) {
+                    console.error("Error en createThread (vía backend):", error);
+                    throw error;
+                }
+            }
+
+            async function addMessageToThread(threadId, userMessage) {
+                try {
+                    const response = await fetch(`${BACKEND_URL}/v1/threads/${threadId}/messages`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            role: "user",
+                            content: userMessage
+                        })
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`Error añadiendo mensaje (vía backend): ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+                    }
+                } catch (error) {
+                    console.error("Error en addMessageToThread (vía backend):", error);
+                    throw error;
+                }
+            }
+
+            async function createRun(threadId, assistantIdToUse) {
+                try {
+                    const response = await fetch(`${BACKEND_URL}/v1/threads/${threadId}/runs`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            assistant_id: assistantIdToUse
+                        })
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`Error creando run (vía backend): ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+                    }
+                    const data = await response.json();
+                    return data.id;
+                } catch (error) {
+                    console.error("Error en createRun (vía backend):", error);
+                    throw error;
+                }
+            }
+
+            async function pollRunStatus(threadId, runId) {
+                let run;
+                try {
+                    while (true) {
+                        const response = await fetch(`${BACKEND_URL}/v1/threads/${threadId}/runs/${runId}`, {
+                        });
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            throw new Error(`Error sondeando run (vía backend): ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+                        }
+                        run = await response.json();
+                        if (['completed', 'failed', 'cancelled', 'expired'].includes(run.status)) {
+                            break;
+                        }
+                        await new Promise(resolve => setTimeout(resolve, 1000)); 
+                    }
+
+                    if (run.status !== 'completed') {
+                        throw new Error(`Run finalizado con estado (vía backend): ${run.status}. Detalles: ${JSON.stringify(run.last_error || run.incomplete_details || run)}`);
+                    }
+                    return run;
+                } catch (error) {
+                    console.error("Error en pollRunStatus (vía backend):", error);
+                    throw error;
+                }
+            }
+
+            async function getAssistantMessages(threadId, lastRunId) {
+                try {
+                    const response = await fetch(`${BACKEND_URL}/v1/threads/${threadId}/messages?order=desc&limit=1`, {
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`Error obteniendo mensajes (vía backend): ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+                    }
+                    const data = await response.json();
+                    
+                    if (data.data && data.data.length > 0) {
+                        const lastMessage = data.data[0];
+                        if (lastMessage.role === 'assistant' && lastMessage.run_id === lastRunId) {
+                            let fullResponse = "";
+                            lastMessage.content.forEach(contentBlock => {
+                                if (contentBlock.type === 'text') {
+                                    fullResponse += contentBlock.text.value;
+                                }
+                            });
+                            let cleanedResponse = fullResponse.trim();
+                            cleanedResponse = cleanedResponse.replace(/【\d+:\d+†[^】]+?\.pdf】/g, '').trim();
+                            return cleanedResponse;
+                        }
+                    }
+                    return "No se encontró una respuesta nueva del asistente o el último mensaje no es del asistente para este run.";
+                } catch (error) {
+                    console.error("Error en getAssistantMessages:", error);
+                    throw error;
+                }
+            }
+
+            if (chatFab && chatContainer && closeChatButton && chatMessagesContainer && chatInput && chatSendButton) {
+                initializeChatWithAssistant(); 
+
+                chatFab.addEventListener('click', () => {
+                    chatContainer.classList.toggle('open');
+                });
+
+                closeChatButton.addEventListener('click', () => {
+                    chatContainer.classList.remove('open');
+                });
+
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+
+                chatSendButton.addEventListener('click', sendMessage);
+
+                async function sendMessage() {
+                    const messageText = chatInput.value.trim();
+                    if (messageText === "") return;
+
+                    addMessageToChat(messageText, 'user');
+                    chatInput.value = "";
+                    
+                    addMessageToChat("Pensando...", 'bot', true);
+
+                    try {
+                        if (!currentThreadId) {
+                            currentThreadId = await createThread();
+                            console.log("Nuevo Thread ID creado:", currentThreadId);
+                        }
+
+                        await addMessageToThread(currentThreadId, messageText);
+                        const runId = await createRun(currentThreadId, assistantId);
+                        console.log("Run ID creado:", runId);
+                        
+                        await pollRunStatus(currentThreadId, runId);
+                        console.log("Run completado.");
+
+                        const assistantResponse = await getAssistantMessages(currentThreadId, runId);
+                        updateLastBotMessage(assistantResponse);
+
+                    } catch (error) {
+                        console.error("Error en sendMessage (flujo del asistente):", error);
+                        updateLastBotMessage(`Lo siento, tuve un problema: ${error.message}. Revisa la consola para más detalles.`, true);
+                    }
+                }
+
+                function addMessageToChat(text, sender, isTemporaryStyle = false, isErrorStyle = false) {
+                    const messageElement = document.createElement('div');
+                    messageElement.classList.add('chat-message', `${sender.toLowerCase()}-message`);
+
+                    if (isTemporaryStyle && sender.toLowerCase() === 'bot') {
+                        messageElement.classList.add('is-typing');
+                        messageElement.innerHTML = `
+                            <div class="typing-indicator">
+                                <span></span><span></span><span></span>
+                            </div>
+                        `;
+                    } else if (isErrorStyle && sender.toLowerCase() === 'bot') {
+                        messageElement.classList.add('error');
+                        messageElement.innerHTML = `<div class="message-content">${text}</div>`;
+                    } else {
+                        const contentDiv = document.createElement('div');
+                        contentDiv.className = 'message-content';
+                        contentDiv.innerHTML = text.replace(/\n/g, '<br>');
+                        messageElement.appendChild(contentDiv);
+                    }
+
+                    chatMessagesContainer.appendChild(messageElement);
+                    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+                }
+
+                function updateLastBotMessage(text, isError = false) {
+                    const tempMessage = chatMessagesContainer.querySelector('.bot-message.is-typing');
+                    if (tempMessage) {
+                        tempMessage.classList.remove('is-typing');
+                        
+                        if (isError) {
+                            tempMessage.classList.add('error');
+                            tempMessage.innerHTML = `<div class="message-content">${text}</div>`;
+                        } else {
+                            tempMessage.innerHTML = `<div class="message-content">${text.replace(/\n/g, '<br>')}</div>`;
+                        }
+                    } else {
+                        addMessageToChat(text, 'bot', false, isError);
+                    }
+                    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+                }
+
+            } else {
+                console.warn("No se encontraron todos los elementos del widget de chat. La funcionalidad del chat estará deshabilitada.");
+            }
+
+            // --- LANGUAGE SWITCHER LOGIC ---
+            const translationsCoder = {
+                es: {
+                    nav: {
+                        home: "Home",
+                        intro: "Intro",
+                        about: "Sobre mí",
+                        projects: "Proyectos",
+                        skills: "Habilidades",
+                        github: "GitHub"
+                    },
+                    heroGreeting: 'Hola Mundo!',
+                    heroSubtitle: "// Abogado | Aprendiz entusiasta de Programación",
+                    heroDescription: "Combinando mi profesión legal con mi curiosidad por la tecnología. Explorando el mundo de la programación en mi tiempo libre con la ayuda de IA y recursos autodidactas.",
+                    heroCtaProjects: "Mis Proyectos",
+                    aboutTitle: "Mi Viaje en la Programación",
+                    aboutP1: "Como abogado que trabaja a tiempo completo, mi tiempo para aprender programación es limitado. Mi interés comenzó con VBA en Excel para automatizar tareas repetitivas, y actualmente estoy dando mis primeros pasos en Python.",
+                    aboutP2: "Mi método de aprendizaje es principalmente práctico, trabajando en proyectos concretos con ayuda de inteligencia artificial. Uso IA como herramienta para avanzar en mis proyectos mientras aprendo de las soluciones que propone, adaptándolas a mis necesidades específicas.",
+                    aboutP3: "Aunque estoy al principio de este camino, me entusiasma crear puentes entre el mundo legal y el tecnológico, desarrollando pequeñas soluciones que faciliten mi trabajo diario como abogado.",
+                    projectsTitle: "Mis Proyectos",
+                    project1Title: "Software regulatorio farmacéutico: DrugFindr",
+                    project1Desc: "Aplicación web para la comparación y generación de designaciones farmacéuticas que cumplan con los requisitos de la EMA.",
+                    project1Link: "Ver Proyecto",
+                    project2Title: "Proyectos con Python",
+                    project2Desc: "A medida que surgen necesidades que requiren de análisis y validación de datos exhaustivo, donde la revisión manual no es suficiente, me apoyo en la programación para desarrollar programas que me ayuden a optimizar estos procesos. Pueden consultarlos en mi página de Github.",
+                    project3Title: "TrademarkFindr",
+                    project3Desc: "Software alimentado con la API de Trademark View de la EUIPO que permite buscar marcas, controlar marcas que pudieran generar riesgo e incluso resaltar descripción de clases de productos/servicios que podría ser infractora.",
+                    project4Title: "Proyectos con VBA en Excel",
+                    project4Desc: "Proyectos de programación de Excel con VBA, yendo desde un sistema de seguimiento de marcas desde la comodidad de una hoja de Excel con envío de notificaciones por correo electrónico si una marca pasa a estar concedida a una calculadora de plazos que predice en qué momento se llevará a cabo cada una de las etapas procesales para la concesión de una marca o procedimiento judicial con tan solo la fecha de presentación de la solicitud de marca o recurso.",
+                    skillsTitle: "Mis Herramientas de Aprendizaje",
+                    skill1: "VBA/Excel (Principiante)",
+                    skill2: "Python (Principiante)",
+                    skill3: "Programación asistida por IA",
+                    skill4: "Aprendizaje por libros",
+                    skill5: "Aprendizaje por proyectos",
+                    skill6: "Autodidacta",
+                    githubTitle: "Mi Aprendizaje",
+                    githubDesc: "Mi camino de aprendizaje es realista y adaptado a mis limitaciones de tiempo. Estoy explorando la programación mientras mantengo mi carrera legal, utilizando herramientas de IA para avanzar en proyectos prácticos y documentando mi progreso.",
+                    githubLink: "Ver mi Progreso en GitHub",
+                    contactTitle: "¿Conectamos?",
+                    contactDesc: "Si mi perfil te ha resultado interesante, estás buscando un profesional con mis habilidades, o simplemente te gustaría explorar posibles colaboraciones o intercambiar ideas, estaré encantado de que te pongas en contacto conmigo a través de los siguientes canales:",
+                    contactButtonEmail: "Enviar un Mensaje",
+                    contactButtonLinkedIn: "LinkedIn",
+                    contactButtonGitHub: "GitHub",
+                    footerCopyright: '© 2025 <a href="#hero" style="color: var(--primary-accent); text-decoration:none;">Isaac Sandiumenge</a>. Todos los derechos reservados.',
+                    footerQuote: '"Abogado de día, Programador de noche"',
+                    footerLegalSideLink: "Descubre mi lado más jurídico",
+                    chatHeader: "Pregúntame!",
+                    chatPlaceholder: "Escribe tu mensaje..."
+                },
+                en: {
+                    nav: {
+                        home: "Home",
+                        intro: "Intro",
+                        about: "About",
+                        projects: "Projects",
+                        skills: "Skills",
+                        github: "GitHub"
+                    },
+                    heroGreeting: 'Hello world!',
+                    heroSubtitle: "// Lawyer | Enthusiastic Programming Learner",
+                    heroDescription: "Combining my legal profession with my curiosity for technology. Exploring the world of programming in my free time with the help of AI and self-taught resources.",
+                    heroCtaProjects: "My Projects",
+                    aboutTitle: "My Programming Journey",
+                    aboutP1: "As a full-time lawyer, my time for learning programming is limited. My interest began with VBA in Excel to automate repetitive tasks, and I am currently taking my first steps in Python.",
+                    aboutP2: "My learning method is primarily practical, working on concrete projects with the help of artificial intelligence. I use AI as a tool to advance my projects while learning from the solutions it proposes, adapting them to my specific needs.",
+                    aboutP3: "Although I am at the beginning of this path, I am excited to build bridges between the legal and technological worlds, developing small solutions that facilitate my daily work as a lawyer.",
+                    projectsTitle: "My Projects",
+                    project1Title: "Pharmaceutical Regulatory Software: DrugFindr",
+                    project1Desc: "Web application for comparing and generating pharmaceutical designations that meet EMA requirements.",
+                    project1Link: "View Project",
+                    project2Title: "Projects with Python",
+                    project2Desc: "As needs arise that require exhaustive data analysis and validation, where manual review is not enough, I rely on programming to develop programs that help me optimize these processes. You can consult them on my Github page.",
+                    project3Title: "TrademarkFindr",
+                    project3Desc: "Software powered by EUIPO's Trademark View API that allows searching for trademarks, monitoring trademarks that could pose a risk, and even highlighting descriptions of product/service classes that could be infringing.",
+                    project4Title: "Projects with VBA in Excel",
+                    project4Desc: "Excel programming projects with VBA, ranging from a trademark tracking system from the comfort of an Excel sheet with email notifications if a trademark is granted, to a deadline calculator that predicts when each procedural stage for granting a trademark or judicial proceeding will take place with just the filing date of the trademark application or appeal.",
+                    skillsTitle: "My Learning Tools",
+                    skill1: "VBA/Excel (Beginner)",
+                    skill2: "Python (Beginner)",
+                    skill3: "AI-assisted Programming",
+                    skill4: "Learning from books",
+                    skill5: "Project-based learning",
+                    skill6: "Self-taught",
+                    githubTitle: "My Learning",
+                    githubDesc: "My learning path is realistic and adapted to my time constraints. I am exploring programming while maintaining my legal career, using AI tools to advance practical projects and documenting my progress.",
+                    githubLink: "View my Progress on GitHub",
+                    contactTitle: "Let's Connect?",
+                    contactDesc: "If you found my profile interesting, are looking for a professional with my skills, or would simply like to explore possible collaborations or exchange ideas, I would be delighted for you to contact me through the following channels:",
+                    contactButtonEmail: "Send a Message",
+                    contactButtonLinkedIn: "LinkedIn",
+                    contactButtonGitHub: "GitHub",
+                    footerCopyright: '© 2025 <a href="#hero" style="color: var(--primary-accent); text-decoration:none;">Isaac Sandiumenge</a>. All rights reserved.',
+                    footerQuote: '"Lawyer by day, Programmer by night"',
+                    footerLegalSideLink: "Discover my legal side",
+                    chatHeader: "Ask me!",
+                    chatPlaceholder: "Type your message..."
+                }
+            };
+            
+            // Initialize i18next
+            i18next.init({
+                lng: localStorage.getItem('preferredLanguageCoder') || 'es',
+                debug: true, // Set to false for production
+                resources: {
+                    es: { translation: translationsCoder.es },
+                    en: { translation: translationsCoder.en }
+                }
+            }).then(function(t) {
+                updateUICoder(); // Call a function to update UI once i18next is initialized
+            });
+
+            function updateUICoder() {
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    element.innerHTML = i18next.t(key);
+                });
+                // Call the original changeLanguageCoder function to handle elements not using data-i18n
+                // Ensure it doesn't try to re-translate elements already handled by i18next
+                const currentLang = i18next.language;
+                if (translationsCoder[currentLang]) {
+                    const T = translationsCoder[currentLang];
+                    
+                    // Translate elements NOT using data-i18n (original logic from changeLanguageCoder)
+                    // Hero (example, as it's already in translationsCoder.es/en.heroGreeting)
+                    // const heroH1 = document.querySelector('.hero-content h1');
+                    // if (heroH1 && T.heroGreeting) heroH1.innerHTML = T.heroGreeting; // Already handled by data-i18n if attribute is added
+
+                    const heroSubtitle = document.querySelector('.hero-content .subtitle');
+                    if (heroSubtitle && T.heroSubtitle) heroSubtitle.innerText = T.heroSubtitle;
+                    const heroDescP = document.querySelector('.hero-content p[style*="margin-bottom: 30px"]');
+                    if (heroDescP && T.heroDescription) heroDescP.innerText = T.heroDescription;
+                    const heroCta = document.querySelector('.hero-content a.cta-button[href="#projects"]');
+                    if (heroCta && T.heroCtaProjects) heroCta.innerText = T.heroCtaProjects; // Already handled if data-i18n added
+
+                    // About Section
+                    const aboutTitleEl = document.querySelector('#about .section-title');
+                    if (aboutTitleEl && T.aboutTitle) aboutTitleEl.innerText = T.aboutTitle;
+                    const aboutParas = document.querySelectorAll('#about div[style*="text-align: center"] p');
+                    if (aboutParas.length > 0 && T.aboutP1) aboutParas[0].innerText = T.aboutP1;
+                    if (aboutParas.length > 1 && T.aboutP2) aboutParas[1].innerText = T.aboutP2;
+                    if (aboutParas.length > 2 && T.aboutP3) aboutParas[2].innerText = T.aboutP3;
+
+                    // Projects Section
+                    const projectsTitleEl = document.querySelector('#projects .section-title');
+                    if (projectsTitleEl && T.projectsTitle) projectsTitleEl.innerText = T.projectsTitle;
+                    const projectCards = document.querySelectorAll('#projects .project-card');
+                    if (projectCards.length > 0) {
+                        const card1Title = projectCards[0].querySelector('h3');
+                        if (card1Title && T.project1Title) card1Title.innerText = T.project1Title;
+                        const card1Desc = projectCards[0].querySelector('p');
+                        if (card1Desc && T.project1Desc) card1Desc.innerText = T.project1Desc;
+                        const card1Link = projectCards[0].querySelector('.project-links a');
+                        if (card1Link && T.project1Link) card1Link.innerHTML = `<i class="fas fa-external-link-alt"></i> ${T.project1Link}`;
+                    }
+                    if (projectCards.length > 1) {
+                        const card2Title = projectCards[1].querySelector('h3');
+                        if (card2Title && T.project2Title) card2Title.innerText = T.project2Title;
+                        const card2Desc = projectCards[1].querySelector('p');
+                        if (card2Desc && T.project2Desc) card2Desc.innerText = T.project2Desc;
+                    }
+                    if (projectCards.length > 2) {
+                        const card3Title = projectCards[2].querySelector('h3');
+                        if (card3Title && T.project3Title) card3Title.innerText = T.project3Title;
+                        const card3Desc = projectCards[2].querySelector('p');
+                        if (card3Desc && T.project3Desc) card3Desc.innerText = T.project3Desc;
+                    }
+                    if (projectCards.length > 3) {
+                        const card4Title = projectCards[3].querySelector('h3');
+                        if (card4Title && T.project4Title) card4Title.innerText = T.project4Title;
+                        const card4DescP = projectCards[3].querySelector('p');
+                        if (card4DescP && T.project4Desc) card4DescP.innerText = T.project4Desc;
+                    }
+                    
+                    // Skills Section
+                    const skillsTitleEl = document.querySelector('#skills .section-title');
+                    if (skillsTitleEl && T.skillsTitle) skillsTitleEl.innerText = T.skillsTitle;
+                    const skillItems = document.querySelectorAll('#skills .skill-item span');
+                    if (skillItems.length > 0 && T.skill1) skillItems[0].innerText = T.skill1;
+                    if (skillItems.length > 1 && T.skill2) skillItems[1].innerText = T.skill2;
+                    if (skillItems.length > 2 && T.skill3) skillItems[2].innerText = T.skill3;
+                    if (skillItems.length > 3 && T.skill4) skillItems[3].innerText = T.skill4;
+                    if (skillItems.length > 4 && T.skill5) skillItems[4].innerText = T.skill5;
+                    if (skillItems.length > 5 && T.skill6) skillItems[5].innerText = T.skill6;
+
+                    // GitHub Section
+                    const githubTitleEl = document.querySelector('#github .section-title');
+                    if (githubTitleEl && T.githubTitle) githubTitleEl.innerText = T.githubTitle;
+                    const githubDescP = document.querySelector('#github .github-showcase p');
+                    if (githubDescP && T.githubDesc) githubDescP.innerText = T.githubDesc;
+                    const githubLinkA = document.querySelector('#github .github-showcase a.cta-button');
+                    if (githubLinkA && T.githubLink) githubLinkA.innerHTML = `<i class="fab fa-github"></i> ${T.githubLink}`;
+
+                    // Contact Section
+                    const contactTitleEl = document.querySelector('#contact .section-title');
+                    if (contactTitleEl && T.contactTitle) contactTitleEl.innerText = T.contactTitle;
+                    const contactDescP = document.querySelector('#contact p[style*="max-width: 750px"]');
+                    if (contactDescP && T.contactDesc) contactDescP.innerText = T.contactDesc;
+                    const contactButtons = document.querySelectorAll('#contact .contact-buttons a');
+                    if (contactButtons.length > 0 && T.contactButtonEmail) contactButtons[0].innerHTML = `<i class="fas fa-envelope"></i> ${T.contactButtonEmail}`;
+                    if (contactButtons.length > 1 && T.contactButtonLinkedIn) contactButtons[1].innerHTML = `<i class="fab fa-linkedin-in"></i> ${T.contactButtonLinkedIn}`;
+                    if (contactButtons.length > 2 && T.contactButtonGitHub) contactButtons[2].innerHTML = `<i class="fab fa-github"></i> ${T.contactButtonGitHub}`;
+
+                    // Footer
+                    const copyrightP = document.querySelector('footer.coder-footer p[style*="margin-top: 15px"]');
+                    if (copyrightP && T.footerCopyright) copyrightP.innerHTML = T.footerCopyright;
+
+                    const quoteP = document.querySelector('footer.coder-footer p[style*="font-size: 0.8rem"]');
+                    if (quoteP && T.footerQuote) quoteP.innerText = T.footerQuote;
+                    
+                    const legalSideLink = document.querySelector('footer.coder-footer a.balance-link-coder');
+                    if (legalSideLink && T.footerLegalSideLink) legalSideLink.innerHTML = `<i class="fas fa-balance-scale"></i> ${T.footerLegalSideLink}`;
+
+                    // Chat Widget
+                    const chatHeaderSpan = document.querySelector('.chat-widget-header span:first-child');
+                    if (chatHeaderSpan && T.chatHeader) chatHeaderSpan.innerText = T.chatHeader;
+                    const chatInputEl = document.getElementById('chatWidgetInput');
+                    if (chatInputEl && T.chatPlaceholder) chatInputEl.placeholder = T.chatPlaceholder;
+                }
+
+                // Update active language button
+                document.querySelectorAll('.language-selector .lang-option').forEach(opt => {
+                    opt.classList.remove('active');
+                    if (opt.getAttribute('data-lang') === i18next.language) {
+                        opt.classList.add('active');
+                    }
+                });
+                localStorage.setItem('preferredLanguageCoder', i18next.language);
+            }
+            
+            function changeLanguageCoder(lang) { // This function now mainly changes the language and triggers UI update
+                i18next.changeLanguage(lang).then(t => {
+                    updateUICoder();
+                });
+            }
+
+            const langOptionsCoder = document.querySelectorAll('.language-selector .lang-option');
+            langOptionsCoder.forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const selectedLang = opt.getAttribute('data-lang');
+                    changeLanguageCoder(selectedLang);
+                });
+            });
+        });
+    </script>
+
+    <!-- Widget de Chat Asistente HTML -->
+    <div class="chat-widget-fab" id="chatWidgetFab">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+
+    <div class="chat-widget-container" id="chatWidgetContainer">
+        <div class="chat-widget-header">
+            <span>Pregúntame!</span>
+            <span class="close-chat" id="closeChatWidget">&times;</span>
+        </div>
+        <div class="chat-widget-messages" id="chatWidgetMessages">
+            <!-- Mensajes del chat se añadirán aquí -->
+            <!-- <div class="bot-message">Hola 👋! Soy tu asistente virtual. Pregúntame sobre el contenido de esta página.</div> -->
+        </div>
+        <div class="chat-widget-input">
+            <input type="text" id="chatWidgetInput" placeholder="Escribe tu mensaje...">
+            <button id="chatWidgetSend"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+</body>
+</html> 
