@@ -810,12 +810,15 @@
 
                 <!-- Proyecto Python (Derecha) -->
                 <div class="project-card fade-in" style="animation-delay: 0.2s;">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop" alt="Proyecto Python"> <!-- Imagen añadida -->
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop" alt="Proyecto Generics Launching Forecast"> <!-- Imagen añadida -->
                     <div class="project-content">
-                        <h3>Proyectos con Python</h3>
-                        <p>A medida que surgen necesidades que requiren de análisis y validación de datos exhaustivo, donde la revisión manual no es suficiente, me apoyo en la programación para desarrollar programas que me ayuden a optimizar estos procesos. Pueden consultarlos en mi página de Github.</p>
+                        <h3>Generics Launching Forecast</h3>
+                        <p>Software que predice cuándo saldrán los genéricos de un medicamento, considerando la situación de IP y regulatoria.</p>
                         <div class="project-tags">
-                            <span class="tag">Python</span><span class="tag">Aprendizaje IA</span><span class="tag">Principiante</span>
+                            <span class="tag">Python</span><span class="tag">Aprendizaje IA</span><span class="tag">Principiante</span><span class="tag">EPO API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://generics-launching-forecast-229573331017.us-west1.run.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Ver Proyecto</a>
                         </div>
                     </div>
                 </div>
@@ -1254,8 +1257,9 @@
                     project1Title: "Software regulatorio farmacéutico: DrugFindr",
                     project1Desc: "Aplicación web para la comparación y generación de designaciones farmacéuticas que cumplan con los requisitos de la EMA.",
                     project1Link: "Ver Proyecto",
-                    project2Title: "Proyectos con Python",
-                    project2Desc: "A medida que surgen necesidades que requiren de análisis y validación de datos exhaustivo, donde la revisión manual no es suficiente, me apoyo en la programación para desarrollar programas que me ayuden a optimizar estos procesos. Pueden consultarlos en mi página de Github.",
+                    project2Title: "Generics Launching Forecast",
+                    project2Desc: "Software que predice cuándo saldrán los genéricos de un medicamento, considerando la situación de IP y regulatoria.",
+                    project2Link: "Ver Proyecto",
                     project3Title: "TrademarkFindr",
                     project3Desc: "Software alimentado con la API de Trademark View de la EUIPO que permite buscar marcas, controlar marcas que pudieran generar riesgo e incluso resaltar descripción de clases de productos/servicios que podría ser infractora.",
                     project4Title: "Proyectos con VBA en Excel",
@@ -1302,8 +1306,9 @@
                     project1Title: "Pharmaceutical Regulatory Software: DrugFindr",
                     project1Desc: "Web application for comparing and generating pharmaceutical designations that meet EMA requirements.",
                     project1Link: "View Project",
-                    project2Title: "Projects with Python",
-                    project2Desc: "As needs arise that require exhaustive data analysis and validation, where manual review is not enough, I rely on programming to develop programs that help me optimize these processes. You can consult them on my Github page.",
+                    project2Title: "Generics Launching Forecast",
+                    project2Desc: "Software that predicts when the generics of a medicine will be launched, considering the IP and regulatory landscape.",
+                    project2Link: "View Project",
                     project3Title: "TrademarkFindr",
                     project3Desc: "Software powered by EUIPO's Trademark View API that allows searching for trademarks, monitoring trademarks that could pose a risk, and even highlighting descriptions of product/service classes that could be infringing.",
                     project4Title: "Projects with VBA in Excel",
@@ -1324,7 +1329,7 @@
                     contactButtonLinkedIn: "LinkedIn",
                     contactButtonGitHub: "GitHub",
                     footerCopyright: '© 2025 <a href="#hero" style="color: var(--primary-accent); text-decoration:none;">Isaac Sandiumenge</a>. All rights reserved.',
-                    footerQuote: '"Lawyer by day, Programmer by night"',
+                    footerQuote: '"Lawyer by day, Coder by night"',
                     footerLegalSideLink: "Discover my legal side",
                     chatHeader: "Ask me!",
                     chatPlaceholder: "Type your message..."
@@ -1391,6 +1396,8 @@
                         if (card2Title && T.project2Title) card2Title.innerText = T.project2Title;
                         const card2Desc = projectCards[1].querySelector('p');
                         if (card2Desc && T.project2Desc) card2Desc.innerText = T.project2Desc;
+                        const card2Link = projectCards[1].querySelector('.project-links a');
+                        if (card2Link && T.project2Link) card2Link.innerHTML = `<i class="fas fa-external-link-alt"></i> ${T.project2Link}`;
                     }
                     if (projectCards.length > 2) {
                         const card3Title = projectCards[2].querySelector('h3');
