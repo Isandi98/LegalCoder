@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+:root {
+    --primary-color: #2A4365; /* Azul menos corporativo */
+    --secondary-color: #48BB78; /* Verde más fresco y personal */
+    --accent-color: #F6AD55; /* Naranja cálido en lugar de oro */
+    --bg-light: #F7FAFC; /* Fondo más suave */
+    --text-dark: #2D3748;
+    --text-medium: #4A5568;
+    --text-light: #718096; /* Redefined to match lawyer.html context */
+    --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-strong: 0 8px 20px rgba(0, 0, 0, 0.12);
+    --text-on-dark-bg: #E2E8F0;
+    --font-serif: 'Merriweather', serif;
+    --font-sans: 'Open Sans', sans-serif;
+    --transition-speed: 0.4s;
+    --shadow-light: 0 5px 15px rgba(0,0,0,0.08);
+}
+
 /* Estilos para la sección Perfil Profesional */
 .professional-profile {
     display: flex;
@@ -177,4 +195,265 @@
     font-style: italic;
     color: #555;  /* Un color un poco más suave para el subtítulo */
     margin-bottom: 5px; /* Pequeño espacio antes de la barra de tiempo */
+} 
+
+/* Estilos para la política de privacidad */
+.privacy-policy-section {
+    background-color: #ffffff;
+    padding: 60px 0;
+    font-family: var(--font-sans); /* Use Open Sans as primary font */
+    color: #333333;
+}
+
+.privacy-policy-section .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.privacy-policy-section .section-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: left;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.privacy-policy-section .section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80px;
+    height: 4px;
+    background-color: #007bff; /* Un azul profesional */
+    border-radius: 2px;
+}
+
+.privacy-policy-section h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 10px;
+}
+
+.privacy-policy-section h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333333;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.privacy-policy-section p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #555555;
+    text-align: justify; /* Justificar el texto */
+}
+
+.privacy-policy-section ul {
+    list-style: disc;
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+
+.privacy-policy-section ul li {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 10px;
+    color: #555555;
+}
+
+.privacy-policy-section strong {
+    font-weight: 700;
+    color: #333333;
+}
+
+.privacy-policy-section a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.privacy-policy-section a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Estilos para el footer en la página de privacidad (similar al header principal) */
+.privacy-policy-section + footer {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 30px 0;
+    font-family: var(--font-sans); /* Ensure Open Sans is used in the footer */
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.privacy-policy-section + footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.privacy-policy-section + footer p {
+    font-family: var(--font-sans); /* Explicitly set font for footer paragraphs */
+    color: var(--text-on-dark-bg); /* Ensure consistent text color */
+}
+
+.privacy-policy-section + footer .social-links a {
+    color: #ffffff;
+    margin: 0 10px;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+.privacy-policy-section + footer .social-links a:hover {
+    color: #007bff;
+}
+
+/* Global Container */
+.container {
+    width: 90%;
+    max-width: 1100px; /* Adjusted to match lawyer.html */
+    margin: 0 auto;
+    padding: 30px 0; /* Adjusted to match lawyer.html */
+}
+
+/* Header - Lawyer.html style */
+header {
+    background-color: var(--primary-color); /* From lawyer.html theme */
+    color: var(--text-on-dark-bg); /* From lawyer.html theme */
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2); /* From lawyer.html theme */
+}
+header .container {
+    display: flex;
+    justify-content: space-between; /* Space between logo, nav, and lang switcher */
+    align-items: center;
+    padding: 5px 0; /* From lawyer.html theme */
+}
+
+.logo-lawyer.ambidex-logo {
+    font-family: var(--font-sans);
+    font-size: 1.8rem; /* Ensured to be 1.8rem */
+    color: var(--text-on-dark-bg);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+.logo-lawyer.ambidex-logo i.fa-yin-yang {
+    color: var(--accent-color);
+    margin-right: 10px;
+    font-size: 1.7rem;
+    transition: transform 0.4s ease, color var(--transition-speed);
+}
+.logo-lawyer.ambidex-logo:hover {
+    color: var(--accent-color);
+}
+.logo-lawyer.ambidex-logo:hover i.fa-yin-yang {
+    color: white;
+    transform: rotate(180deg);
+}
+
+nav.main-nav-lawyer ul.nav-list-lawyer {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+nav.main-nav-lawyer ul.nav-list-lawyer li {
+    margin-left: 20px;
+}
+nav.main-nav-lawyer ul.nav-list-lawyer li a {
+    color: var(--text-on-dark-bg);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 6px 10px;
+    border-radius: 20px;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+nav.main-nav-lawyer ul.nav-list-lawyer li a:hover,
+nav.main-nav-lawyer ul.nav-list-lawyer li a.active {
+    color: var(--primary-color);
+    background-color: var(--accent-color);
+}
+
+.lang-switcher-lawyer {
+    display: flex;
+    gap: 10px;
+}
+.lang-switcher-lawyer button {
+    background-color: #ffffff; /* White background for buttons */
+    border: 1px solid #dddddd;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: var(--text-dark); /* Dark text for buttons */
+}
+.lang-switcher-lawyer button:hover {
+    background-color: #f0f0f0;
+}
+
+/* --- END OF LAWYER HEADER/NAV STYLES --- */
+
+/* --- REMOVE OLD HEADER/SIDEBAR STYLES --- */
+/* Remove Hamburger Menu, Sidebar, and related styles */
+.hamburger-menu,
+.sidebar,
+.close-sidebar,
+.sidebar-nav-list,
+.sidebar-lang-switcher {
+    display: none !important;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    /* No horizontal navigation on smaller screens */
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .privacy-policy-section .section-title {
+        font-size: 2.2rem;
+    }
+
+    .privacy-policy-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .privacy-policy-section p,
+    .privacy-policy-section ul li {
+        font-size: 0.95rem;
+    }
+
+    .privacy-policy-section + footer .container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .privacy-policy-section .section-title {
+        font-size: 1.8rem;
+    }
+
+    .privacy-policy-section h2 {
+        font-size: 1.3rem;
+    }
 } 
