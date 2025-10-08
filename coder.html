@@ -1,1477 +1,1514 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DrugFindr - Pharmaceutical Innovation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <title>Developer Portfolio :: [Isaac Sandiumenge]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
     <style>
         :root {
-            --primary: #3B82F6;
-            --primary-light: #60A5FA;
-            --primary-dark: #2563EB;
-            --secondary: #10B981; /* Verde */
-            --accent: #8B5CF6; /* Púrpura */
-            --success: #10B981;
-            --dark: #0F172A; /* Definición original de DrugFindr */
-            --dark-light: #1E293B; /* Definición original de DrugFindr */
-            --light: #F8FAFC;
-            --text: #334155;
-            --muted: #94A3B8; /* DrugFindr tiene --muted, se usará este */
-            --shadow-color: rgba(15, 23, 42, 0.08);
-
-            /* Variables de coder.html (algunas pueden sobreescribir o ser alias) */
-            --bg-dark: #1a1a2e; /* Azul noche profundo - de coder.html */
-            --bg-medium: #16213e; /* Azul oscuro más suave - de coder.html */
-            /* --bg-light: #0f3460; */ /* Azul más claro para acentos - de coder.html, DrugFindr ya tiene --light */
-            --primary-accent: #e94560; /* Coral vibrante - de coder.html */
-            --secondary-accent: #53a8b6; /* Turquesa suave - de coder.html */
-            /* --text-light: #e0e0e0; */ /* DrugFindr usa --text para el modo oscuro que es similar */
-            /* --text-dark: #1a1a2e; */ /* DrugFindr usa --text para el modo claro que es similar */
-            --font-primary: 'Poppins', sans-serif; /* de coder.html */
-            --font-code: 'Roboto Mono', monospace; /* de coder.html */
-            --transition-speed: 0.3s; /* de coder.html */
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* de coder.html */
-
-            /* Nuevos colores para iconos */
-            --icon-color-1: #EF4444; /* Rojo */
-            --icon-color-2: #F97316; /* Naranja */
-            --icon-color-3: #EAB308; /* Amarillo */
-            --icon-color-4: #22C55E; /* Verde Esmeralda */
-            --icon-color-5: #0EA5E9; /* Azul Cielo */
-            --icon-color-6: #D946EF; /* Fucsia */
+            --bg-dark: #1a1a2e; /* Azul noche profundo */
+            --bg-medium: #16213e; /* Azul oscuro más suave */
+            --bg-light: #0f3460; /* Azul más claro para acentos */
+            --primary-accent: #e94560; /* Coral vibrante */
+            --secondary-accent: #53a8b6; /* Turquesa suave */
+            --text-light: #e0e0e0;
+            --text-dark: #1a1a2e;
+            --text-muted: #a0a0a0;
+            --font-primary: 'Poppins', sans-serif;
+            --font-code: 'Roboto Mono', monospace;
+            --transition-speed: 0.3s;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary: #3B82F6;
-                --primary-light: #60A5FA;
-                --primary-dark: #2563EB;
-                --secondary: #10B981;
-                --accent: #8B5CF6;
-                --success: #10B981;
-                --dark: #F8FAFC;
-                --dark-light: #F1F5F9;
-                --light: #0F172A;
-                --text: #E2E8F0;
-                --muted: #94A3B8;
-                --shadow-color: rgba(255, 255, 255, 0.05);
-            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background: var(--light);
-            color: var(--text);
+            font-family: var(--font-primary);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.7;
             overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            zoom: 0.67; /* Aplicamos el zoom para escalar la página */
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .dark-mode {
-            --primary: #3B82F6;
-            --primary-light: #60A5FA;
-            --primary-dark: #2563EB;
-            --secondary: #10B981;
-            --accent: #8B5CF6;
-            --success: #10B981;
-            --dark: #F8FAFC;
-            --dark-light: #F1F5F9;
-            --light: #0F172A;
-            --text: #E2E8F0;
-            --muted: #94A3B8;
-            --shadow-color: rgba(255, 255, 255, 0.05);
-        }
-
-        .btn-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .theme-toggle {
-            color: var(--primary);
-        }
-
-        .hero-section {
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--accent));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section h1 {
-            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra de texto más sutil */
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .bg-grid {
-            background-image: 
-                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            mask-image: radial-gradient(circle at center, transparent 0%, black 100%);
-            -webkit-mask-image: radial-gradient(circle at center, transparent 0%, black 100%);
-            mask: radial-gradient(circle at center, transparent 0%, black 100%);
-        }
-
-        .bg-glow {
-            position: absolute;
-            width: 60%;
-            height: 40%;
-            background: var(--accent);
-            filter: blur(180px);
-            opacity: 0.15;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            animation: pulse 8s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.1; }
-            100% { opacity: 0.2; }
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .glass-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .glass-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 16px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3));
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            font-weight: 500;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
-            z-index: 1;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-light), var(--accent));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-primary:hover::before {
-            opacity: 1;
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: white;
-            font-weight: 500;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            outline: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.2;
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            /* background: linear-gradient(135deg, var(--primary-light), var(--primary)); Eliminamos el fondo original */
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-        }
-
-        .feature-icon::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 16px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3));
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-            opacity: 0.7; /* Un poco más sutil el borde brillante */
-        }
-
-        /* Animación de pulso para los iconos */
-        @keyframes iconPulse {
-            0% { transform: scale(1); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-            50% { transform: scale(1.08); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
-            100% { transform: scale(1); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        }
-
-        .glass-card:hover .feature-icon {
-            /* transform: scale(1.1); Eliminamos el scale general del hover de la tarjeta */
-            /* background: linear-gradient(135deg, var(--primary), var(--accent)); Eliminamos cambio de fondo */
-            /* box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3); Eliminamos sombra específica */
-            animation: iconPulse 0.8s ease-in-out;
-        }
-
-        /* Estilos individuales para cada icono */
-        .feature-icon.icon-1 { background: var(--icon-color-1); }
-        .feature-icon.icon-2 { background: var(--icon-color-2); }
-        .feature-icon.icon-3 { background: var(--icon-color-3); }
-        .feature-icon.icon-4 { background: var(--icon-color-4); }
-        .feature-icon.icon-5 { background: var(--icon-color-5); }
-        .feature-icon.icon-6 { background: var(--icon-color-6); }
-
-        .video-container {
-            overflow: hidden;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            position: relative;
-            background: #000;
-            transition: all 0.3s ease;
-        }
-
-        .video-container:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-        }
-
-        .video-container img {
-            transition: transform 0.5s ease;
-        }
-
-        .video-container:hover img {
-            transform: scale(1.05);
-        }
-
-        .video-play {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .video-play:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            background: var(--primary);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            padding: 0.5rem 1rem;
-            position: relative;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0.5rem;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: white;
-        }
-
-        .nav-link:hover::after {
-            width: calc(100% - 1rem);
-        }
-
-        @media (max-width: 768px) {
-            .hero-section {
-                min-height: auto;
-                padding: 6rem 0;
-            }
-            
-            .glass-card {
-                padding: 1.5rem;
-            }
-            
-            .btn-primary, .btn-secondary {
-                padding: 0.75rem 1.5rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        .animated-gradient {
-            background: linear-gradient(270deg, var(--primary), var(--secondary), var(--accent));
-            background-size: 600% 600%;
-            animation: gradient-animation 8s ease infinite;
-        }
-
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Video section */
-        .video-section {
-            background: var(--dark-light);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-bg-dots {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 30px 30px;
-            z-index: 0;
-        }
-
-        /* Aspect ratio utilities que faltaban */
-        .aspect-w-16 {
-            position: relative;
-            padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
-            --tw-aspect-w: 16;
-            overflow: hidden !important;
-        }
-
-        .aspect-h-9 {
-            --tw-aspect-h: 9;
-        }
-
-        .aspect-w-16 > * {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
-
-        /* Botón de reproducción grande y visible */
-        .play-button-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 5;
-            background: rgba(0, 0, 0, 0.3) !important;
-            border: none !important;
-            box-shadow: none !important;
-            border-radius: 0 !important;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .play-button-overlay:hover {
-            background: rgba(0, 0, 0, 0.5) !important;
-        }
-        
-        .play-button-overlay::before, .play-button-overlay::after {
-            content: none !important;
-        }
-        
-        .play-button-large {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .play-button-large svg {
-            width: 40px;
-            height: 40px;
-            color: white;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-        }
-        
-        .play-button-overlay:hover .play-button-large {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-        }
-        
-        .play-text {
-            position: absolute;
-            bottom: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 500;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Corrección para iframe de video */
-        iframe#demo-video {
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-            overflow: hidden !important;
-            background-color: #000 !important;
-        }
-        
-        #video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            z-index: 20;
-            overflow: hidden !important;
-        }
-
-        /* Estilos para el contenedor aspect-ratio */
-        .aspect-w-16.aspect-h-9.relative {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        /* Ocultar completamente el botón de play antiguo que ya no se usa */
-        .video-play#play-btn {
-            display: none !important;
-        }
-
-        /* Nuevos estilos para los iconos de la sección IMPACT */
-        .impact-icon {
-            width: 60px; /* Mismo tamaño que feature-icon para consistencia */
-            height: 60px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white; /* Asumimos que los SVG son blancos o se controlan por stroke/fill */
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            margin-left: auto; /* Para centrar si es necesario */
-            margin-right: auto;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-        }
-
-        .impact-icon::after { /* Mismo borde brillante que feature-icon */
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 16px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3));
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-            opacity: 0.7;
-        }
-        
-        .glass-card:hover .impact-icon {
-            animation: iconPulse 0.8s ease-in-out; /* Reutilizamos la animación iconPulse */
-        }
-
-        /* Colores específicos para los iconos de IMPACT */
-        .impact-icon.icon-impact-1 { background: var(--icon-color-1); } /* Rojo */
-        .impact-icon.icon-impact-2 { background: var(--icon-color-2); } /* Naranja */
-        .impact-icon.icon-impact-3 { background: var(--icon-color-4); } /* Verde Esmeralda */
-        .impact-icon.icon-impact-4 { background: var(--icon-color-5); } /* Azul Cielo */
-
-        /* Footer adjustments for consistent legibility */
-        footer.bg-dark-light {
-            background-color: var(--dark-light) !important; /* Ensure dark background always */
-        }
-        footer.bg-dark-light h3,
-        footer.bg-dark-light p,
-        footer.bg-dark-light a {
-            color: var(--light) !important; /* Ensure light text always */
-        }
-        footer.bg-dark-light a:hover {
-            color: var(--primary-light) !important; /* Lighter color for hover */
-        }
-        footer.bg-dark-light .text-primary-dark {
-            color: var(--primary-dark) !important; /* For the 'D' in DrugFindr logo, if needed */
-        }
-
-        /* Glow animado para el botón principal */
-        .btn-primary.glow {
-            box-shadow: 0 0 16px 4px var(--accent), 0 0 32px 8px var(--primary-light);
-            animation: glowPulse 2s infinite alternate;
-        }
-        @keyframes glowPulse {
-            0% { box-shadow: 0 0 16px 4px var(--accent), 0 0 32px 8px var(--primary-light); }
-            100% { box-shadow: 0 0 32px 12px var(--primary), 0 0 48px 16px var(--accent); }
-        }
-        /* Sombra y elevación en tarjetas al hacer hover */
-        .glass-card, .impact-card {
-            transition: box-shadow 0.3s, transform 0.3s;
-        }
-        .glass-card:hover, .impact-card:hover {
-            box-shadow: 0 12px 32px rgba(59,130,246,0.18), 0 2px 8px rgba(139,92,246,0.12);
-            transform: translateY(-8px) scale(1.03);
-        }
-        /* Fondo animado header */
-        .header-animated-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
-            opacity: 0.12;
-            animation: headerBgMove 8s linear infinite alternate;
-        }
-        @keyframes headerBgMove {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-        /* Scrollspy: resalta el enlace activo */
-        .nav-link.active {
-            color: var(--primary-light) !important;
-            font-weight: 700;
-            text-decoration: underline;
-        }
-        @media (max-width: 768px) {
-            .nav-link.active {
-                text-decoration: underline;
-            }
-        }
-        /* Animación de iconos al hacer hover */
-        .feature-icon, .impact-icon {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .feature-icon:hover, .impact-icon:hover {
-            transform: scale(1.12) rotate(-8deg);
-        }
-        /* Botón Ir arriba flotante */
-        #scrollTopBtn {
-            display: none;
-            position: fixed;
-            bottom: 32px;
-            right: 32px;
-            z-index: 100;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            box-shadow: 0 4px 16px rgba(59,130,246,0.18);
-            cursor: pointer;
-            font-size: 2rem;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s, transform 0.2s;
-        }
-        #scrollTopBtn:hover {
-            background: var(--accent);
-            transform: scale(1.1);
-        }
-        /* Transición de color en el menú al hacer scroll */
-        .navbar-scroll {
-            background: rgba(15, 23, 42, 0.85) !important;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            transition: background 0.3s;
-        }
-        /* Carrusel de testimonios */
-        .testimonial-carousel {
-            overflow: hidden;
-            position: relative;
-            max-width: 600px;
+        .container {
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
-        }
-        .testimonial-slide {
-            display: none;
-            text-align: center;
-            padding: 2rem 1rem;
-            font-size: 1.1rem;
-            color: var(--text);
-        }
-        .testimonial-slide.active {
-            display: block;
-            animation: fadeIn 0.7s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .testimonial-author {
-            margin-top: 1rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
-        /* Animación de números */
-        .impact-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        /* Partículas header */
-        #particles-header {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-            pointer-events: none;
+            padding: 40px 0;
         }
 
-        /* Estilos para el logo interactivo Legal / Coder (adaptado de coder.html) */
-        .logo.legal-coder-logo-interactive {
-            font-family: var(--font-primary, 'Poppins', sans-serif); /* Fallback si --font-primary no está definido */
-            font-weight: 600;
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--bg-medium) 0%, var(--bg-dark) 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo {
+            font-family: var(--font-code);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--secondary-accent);
+        }
+
+        .logo.ambidex-logo {
+            font-family: var(--font-primary);
             font-size: 1.7rem;
+            color: var(--text-light);
+            font-weight: 600;
             display: flex;
             align-items: center;
+            transition: color var(--transition-speed);
+        }
+        .logo.ambidex-logo i.fa-yin-yang {
+            color: var(--primary-accent);
+            margin-right: 10px;
+            font-size: 1.6rem;
+            transition: transform 0.4s ease, color var(--transition-speed);
+        }
+        .logo.ambidex-logo:hover {
+            color: var(--secondary-accent);
+        }
+        .logo.ambidex-logo:hover i.fa-yin-yang {
+            color: var(--secondary-accent);
+            transform: rotate(180deg);
         }
 
-        .logo.legal-coder-logo-interactive .logo-part { /* Aplica a las etiquetas <a> para Legal y Coder */
+        /* Estilos para el logo interactivo Legal / Coder copiado de lawyer.html y adaptado */
+        .logo.legal-coder-logo-interactive { /* Contenedor principal del logo */
+            font-family: var(--font-primary); /* Poppins para coder.html */
+            font-weight: 600;
+            font-size: 1.7rem; /* Tamaño del texto del logo */
             display: flex;
             align-items: center;
             text-decoration: none; 
+        }
+
+        .logo.legal-coder-logo-interactive .logo-part {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
             padding: 3px 6px;
             border-radius: 4px;
-            transition: background-color var(--transition-speed, 0.3s), color var(--transition-speed, 0.3s);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
 
         .logo.legal-coder-logo-interactive .logo-part .icon-legal,
         .logo.legal-coder-logo-interactive .logo-part .icon-code {
             font-size: 1.5rem; /* Tamaño de los iconos */
-            transition: color var(--transition-speed, 0.3s), transform var(--transition-speed, 0.3s);
+            transition: color var(--transition-speed), transform var(--transition-speed);
         }
 
         /* Parte Legal */
-        .logo.legal-coder-logo-interactive a.logo-legal-part {
-            color: var(--secondary-accent, #53a8b6); 
+        .logo.legal-coder-logo-interactive .logo-legal-part {
+            color: var(--secondary-accent); /* Turquesa para Legal en coder.html */
         }
-        .logo.legal-coder-logo-interactive a.logo-legal-part .icon-legal {
-            /* color: var(--secondary-accent, #53a8b6); /* Hereda de la <a> padre */
+        .logo.legal-coder-logo-interactive .logo-legal-part .icon-legal {
+            color: var(--secondary-accent);
             margin-right: 8px;
         }
-        .logo.legal-coder-logo-interactive a.logo-legal-part:hover {
+        .logo.legal-coder-logo-interactive .logo-legal-part:hover {
             background-color: rgba(212, 175, 55, 0.15); /* Fondo amarillo dorado claro */
-            color: #D4AF37 !important; /* Color amarillo dorado para el texto e icono Legal. !important para asegurar override si es necesario */
         }
-        .logo.legal-coder-logo-interactive a.logo-legal-part:hover .text-legal,
-        .logo.legal-coder-logo-interactive a.logo-legal-part:hover .icon-legal {
-            color: #D4AF37 !important; /* Asegurar que los hijos también cambien */
+        .logo.legal-coder-logo-interactive .logo-legal-part:hover .text-legal {
+            color: #D4AF37; /* Color amarillo dorado para el texto Legal */
         }
-        .logo.legal-coder-logo-interactive a.logo-legal-part:hover .icon-legal {
+        .logo.legal-coder-logo-interactive .logo-legal-part:hover .icon-legal {
+            color: #D4AF37; /* Color amarillo dorado para el icono Legal */
             transform: scale(1.1);
         }
 
         /* Parte Coder */
-        .logo.legal-coder-logo-interactive a.logo-coder-part {
-            color: var(--primary-accent, #e94560); 
+        .logo.legal-coder-logo-interactive .logo-coder-part {
+            color: var(--primary-accent); /* Coral para Coder en coder.html */
         }
-        .logo.legal-coder-logo-interactive a.logo-coder-part .icon-code {
-            /* color: var(--primary-accent, #e94560); /* Hereda de la <a> padre */
-            margin-left: 8px; /* Icono después del texto */
+        .logo.legal-coder-logo-interactive .logo-coder-part .icon-code {
+            color: var(--primary-accent);
+            margin-left: 8px;
         }
-        .logo.legal-coder-logo-interactive a.logo-coder-part:hover {
+        .logo.legal-coder-logo-interactive .logo-coder-part:hover {
             background-color: rgba(233, 69, 96, 0.15); /* Fondo coral claro */
-            color: var(--primary-accent, #e94560) !important; /* Mantener color de texto e icono */
+            color: var(--primary-accent);
         }
-        .logo.legal-coder-logo-interactive a.logo-coder-part:hover .text-coder,
-        .logo.legal-coder-logo-interactive a.logo-coder-part:hover .icon-code {
-            color: var(--primary-accent, #e94560) !important; /* Asegurar que los hijos mantengan el color */
-        }
-        .logo.legal-coder-logo-interactive a.logo-coder-part:hover .icon-code {
+        .logo.legal-coder-logo-interactive .logo-coder-part:hover .icon-code {
+            color: var(--primary-accent); /* Icono también coral en hover */
             transform: scale(1.1);
         }
 
         /* Separador */
         .logo.legal-coder-logo-interactive .logo-separator {
-            color: var(--text-muted, #a0a0a0);
-            font-size: 1.7rem; 
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.7rem; /* Mismo tamaño que el texto del logo */
             padding: 0 5px;
-            transition: color var(--transition-speed, 0.3s), background-color var(--transition-speed, 0.3s);
-            border-radius: 4px; 
-            cursor: default; /* No es un enlace */
+            transition: color var(--transition-speed);
+            border-radius: 4px; /* Para consistencia de hover si se añade */
+            line-height: 1; /* Para controlar la altura si es necesario */
         }
         .logo.legal-coder-logo-interactive .logo-separator:hover {
-            color: var(--primary-accent, #e94560); 
+            color: var(--primary-accent); /* O el color que prefieras para el hover del separador */
             background-color: rgba(255,255,255,0.05);
         }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-accent);
+            transition: width var(--transition-speed) ease-out;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary-accent);
+        }
+        nav ul li a:hover::after, nav ul li a.active::after {
+            width: 100%;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background: url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2069&auto=format&fit=crop') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
+            position: relative;
+        }
+        .hero::before { /* Overlay for readability */
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(26, 26, 46, 0.85); /* --bg-dark with opacity */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white; /* Ensure visibility over image */
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        .hero h1 .highlight {
+            color: var(--primary-accent);
+        }
+        .hero .subtitle {
+            font-family: var(--font-code);
+            font-size: 1.5rem;
+            color: var(--secondary-accent);
+            margin-bottom: 30px;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: rgba(15, 52, 96, 0.5); /* --bg-light with opacity */
+            border-radius: 5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-accent);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.6);
+        }
+        .cta-secondary {
+             background: transparent;
+             border: 2px solid var(--secondary-accent);
+             color: var(--secondary-accent);
+             margin-left: 15px;
+             box-shadow: none;
+        }
+        .cta-secondary:hover {
+            background: var(--secondary-accent);
+            color: var(--bg-dark);
+            box-shadow: 0 4px 15px rgba(83, 168, 182, 0.4);
+        }
+        .cta-balance {
+            display: block; /* Para que ocupe su propia línea o inline-block si quieres junto a otros */
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border: 1px solid var(--text-muted);
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: color var(--transition-speed), border-color var(--transition-speed), background-color var(--transition-speed);
+        }
+        .cta-balance:hover {
+            color: var(--primary-accent);
+            border-color: var(--primary-accent);
+            background-color: rgba(233, 69, 96, 0.1);
+        }
+
+
+        /* Section Styling */
+        section {
+            padding: 60px 0;
+        }
+        section:nth-child(odd) { /* Alternating background for sections */
+             background-color: var(--bg-medium);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--text-light);
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary-accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: opacity var(--transition-speed);
+        }
+        .project-card:hover img {
+            opacity: 0.8;
+        }
+        .project-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        .project-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary-accent);
+            margin-bottom: 10px;
+        }
+        .project-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+        .project-tags {
+            margin-bottom: 15px;
+        }
+        .project-tags .tag {
+            display: inline-block;
+            background-color: var(--bg-medium);
+            color: var(--secondary-accent);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-family: var(--font-code);
+        }
+        .project-links a {
+            color: var(--secondary-accent);
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
+        .project-links a:hover {
+            color: var(--primary-accent);
+        }
+        .project-links a i {
+            margin-right: 5px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .skill-item {
+            background-color: var(--bg-light);
+            padding: 20px 25px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 120px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .skill-item i {
+            font-size: 2.5rem;
+            color: var(--primary-accent);
+            margin-bottom: 10px;
+        }
+        .skill-item span {
+            display: block;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        /* GitHub Section */
+        #github {
+            background-color: var(--bg-medium); /* Consistent with alternating backgrounds */
+        }
+        .github-showcase {
+            text-align: center;
+        }
+        .github-showcase p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text-muted);
+        }
+        /* Consider embedding GitHub activity or repos here using JavaScript if desired */
+
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            text-align: center;
+            padding: 30px 0;
+            border-top: 3px solid var(--bg-light);
+        }
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .footer-links a, .social-media a {
+            color: var(--secondary-accent);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color var(--transition-speed);
+        }
+        .footer-links a:hover, .social-media a:hover {
+            color: var(--primary-accent);
+        }
+        .social-media { margin-top: 10px; }
+        .social-media a i { font-size: 1.5rem; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero .subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2.3rem; }
+        }
+        @media (max-width: 768px) {
+            header .container { flex-direction: column; }
+            .logo { margin-bottom: 15px; }
+            nav ul { justify-content: center; flex-wrap: wrap; }
+            nav ul li { margin: 5px 10px; }
+            .language-selector { margin-top: 10px; margin-left: 0; /* Centrar en móvil o ajustar */ }
+            
+            .hero { min-height: 60vh; padding: 40px 0;}
+            .hero h1 { font-size: 2.2rem; }
+            .hero .subtitle { font-size: 1rem; }
+            .cta-button { font-size: 1rem; padding: 10px 25px; }
+
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Utility class for animations (example) */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInAnimation 0.8s ease-out forwards;
+        }
+        @keyframes fadeInAnimation {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .balance-link-coder {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-accent); /* Coral */
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 1px solid var(--primary-accent); /* Coral */
+            border-radius: 20px;
+            transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        .balance-link-coder:hover {
+            background-color: #FFD700; /* Amarillo dorado más fuerte para el botón en hover */
+            color: var(--bg-dark); /* Texto oscuro para contraste en el botón en hover */
+            border-color: #DAA520; /* Amarillo dorado más oscuro para el borde del botón en hover */
+        }
+
+        .balance-link-coder:active {
+            background-color: #FFD700; /* Amarillo dorado más fuerte para el botón */
+            color: var(--bg-dark); /* Texto oscuro para contraste en el botón */
+            border-color: #DAA520; /* Amarillo dorado más oscuro para el borde del botón */
+        }
+
+        .balance-link-coder:hover i.fa-balance-scale,
+        .balance-link-coder:active i.fa-balance-scale {
+            background-color: white; /* Fondo blanco para el icono */
+            color: black; /* Icono (letra) negro */
+            border: 2px solid #FFD700; /* Borde amarillo fuerte alrededor del icono */
+            border-radius: 50%; /* Para hacerlo redondo */
+            padding: 4px; /* Espacio interno para que el icono no toque el borde */
+            /* Ajustes para asegurar que el icono no cambie mucho de tamaño o posición */
+            display: inline-block; /* Para que padding y border-radius funcionen bien */
+            vertical-align: middle; /* Para alinear mejor con el texto si es necesario */
+            line-height: 1; /* Para controlar la altura si es necesario */
+        }
+
+        /* Estilos para el Widget de Chat Asistente */
+        .chat-widget-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-accent); /* Coral vibrante */
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform var(--transition-speed);
+        }
+        .chat-widget-fab:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-widget-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            max-height: 500px;
+            background-color: var(--bg-medium);
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+            pointer-events: none;
+        }
+        .chat-widget-container.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .chat-widget-header {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            padding: 15px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-widget-header .close-chat {
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .chat-widget-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Espacio entre mensajes */
+        }
+        .chat-message {
+            padding: 10px 15px; /* Aumentado padding */
+            border-radius: 18px; /* Radio general aumentado */
+            max-width: 75%;    /* Reducido max-width */
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: var(--primary-accent); /* Coral vibrante */
+            color: white; /* Texto blanco para mejor contraste */
+            align-self: flex-end;
+            border-radius: 18px 18px 5px 18px; /* Esquina inf-der más aguda */
+        }
+        .bot-message {
+            background-color: #f0f0f0; /* Gris claro neutro */
+            color: var(--text-dark); /* Azul noche profundo (para contraste) */
+            align-self: flex-start;
+            border-radius: 18px 18px 18px 5px; /* Esquina inf-izq más aguda */
+        }
+        .bot-message.error {
+            background-color: #721c24; /* Rojo oscuro para errores */
+            color: #f8d7da; /* Texto claro */
+        }
+
+        .message-content {
+            font-size: 0.95em;
+        }
+
+        .chat-widget-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid var(--bg-light);
+        }
+        .chat-widget-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-primary);
+            margin-right: 8px;
+        }
+        .chat-widget-input input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--primary-accent);
+        }
+        .chat-widget-input button {
+            background-color: var(--primary-accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color var(--transition-speed);
+        }
+        .chat-widget-input button:hover {
+            background-color: var(--secondary-accent);
+            color: white;
+        }
+
+        /* Typing indicator styles */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            padding: 10px 0;
+        }
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background-color: var(--text-dark); /* Color oscuro para los puntos */
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: blink 1.4s infinite both;
+        }
+        .typing-indicator span:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes blink {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            20% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        /* Estilo para la burbuja del bot CUANDO muestra el indicador de "escribiendo" */
+        .bot-message.is-typing {
+            background-color: #f0f0f0; /* Mismo color gris claro que los mensajes del bot */
+            color: var(--text-dark); /* Color de texto oscuro como los mensajes del bot */
+        }
+
+        /* Language Selector Styles */
+        .language-selector {
+            display: flex;
+            align-items: center;
+            margin-left: 20px; /* Ajusta según sea necesario */
+        }
+
+        .language-selector .lang-option {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 8px;
+            border-radius: 4px;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        .language-selector .lang-option.active,
+        .language-selector .lang-option:hover {
+            color: var(--primary-accent);
+            background-color: rgba(233, 69, 96, 0.1); /* Fondo con opacidad del color primario */
+        }
+
+        .language-selector .lang-separator {
+            color: var(--text-muted);
+            margin: 0 5px;
+            font-size: 0.9rem;
+        }
+
     </style>
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <button class="btn-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-        <svg xmlns="http://www.w3.org/2000/svg" class="theme-toggle h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-    </button>
 
-    <!-- Hero Section -->
-    <header class="hero-section relative">
-        <div class="header-animated-bg"></div>
-        <div id="particles-header"></div>
-        <div class="bg-grid"></div>
-        <div class="bg-glow"></div>
-        
-        <!-- Floating Graphics Elements (High-tech touch) -->
-        <div class="absolute top-[20%] left-[15%] w-16 h-16 opacity-70" style="animation: float 8s ease-in-out infinite">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                <path fill="rgba(255, 255, 255, 0.2)" d="M38.9,-49.5C51.1,-40.3,62.2,-28.1,67.8,-13.2C73.4,1.7,73.5,19.3,66.7,34C59.9,48.8,46.3,60.7,30.7,67.7C15.1,74.7,-2.4,76.8,-19.2,72.9C-36,69,-52.2,59.2,-62.5,45C-72.9,30.8,-77.4,12.2,-76.1,-6C-74.7,-24.3,-67.4,-42.2,-54.4,-51.6C-41.4,-61,-20.7,-61.8,-2.2,-59.2C16.3,-56.6,32.7,-50.5,38.9,-49.5Z" transform="translate(100 100)" />
-            </svg>
-        </div>
-        
-        <div class="absolute top-[70%] right-[20%] w-24 h-24 opacity-70" style="animation: float 10s ease-in-out infinite alternate">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                <path fill="rgba(255, 255, 255, 0.15)" d="M56.6,-71.2C73.6,-60.5,87.8,-42.8,92.7,-22.7C97.5,-2.7,93,19.7,81.5,36.7C70,53.7,51.4,65.2,31.9,72.5C12.3,79.8,-8.2,82.8,-27.7,77.7C-47.3,72.6,-65.9,59.5,-76.1,41.8C-86.2,24.1,-87.9,1.9,-83.1,-18.2C-78.2,-38.3,-66.7,-56.3,-50.5,-67.4C-34.3,-78.5,-13.5,-82.6,3.9,-87.4C21.3,-92.1,39.6,-81.9,56.6,-71.2Z" transform="translate(100 100)" />
-            </svg>
-        </div>
-        
-        <!-- Navigation -->
-        <header class="sticky top-0 z-[1000] shadow-[0_2px_15px_rgba(0,0,0,0.2)]" style="background: linear-gradient(135deg, var(--bg-medium, #16213e) 0%, var(--bg-dark, #1a1a2e) 100%); padding: 20px 0;">
-            <div class="container mx-auto px-4 flex justify-between items-center" style="padding: 10px 0;">
-                <div class="logo legal-coder-logo-interactive">
-                    <a href="lawyer.html" class="logo-part logo-legal-part">
-                        <i class="fas fa-gavel icon-legal"></i>
-                        <span class="text-legal">Legal</span>
-                    </a>
-                    <span class="logo-separator">/</span>
-                    <a href="coder.html" class="logo-part logo-coder-part">
-                        <span class="text-coder">Coder</span>
-                        <i class="fas fa-code icon-code"></i>
-                    </a>
-                </div>
-                <nav>
-                    <ul class="hidden md:flex space-x-2 list-none">
-                        <li><a href="#features" class="nav-link">Features</a></li>
-                        <li><a href="#demo" class="nav-link">Demo</a></li>
-                        <li><a href="#impact" class="nav-link">Impact</a></li>
-                        <li><a href="#research" class="nav-link">Research</a></li>
-                    </ul>
-                </nav>
-                <button id="mobile-menu-button" class="md:hidden text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
+    <header>
+        <div class="container">
+            <div class="logo legal-coder-logo-interactive">
+                <a href="lawyer.html" class="logo-part logo-legal-part" title="Ir a Perfil Legal">
+                    <i class="fas fa-balance-scale icon-legal"></i>
+                    <span class="text-legal">Legal</span>
+                </a>
+                <a href="index.html" class="logo-separator" title="Ir a Home">/</a>
+                <a href="coder.html" class="logo-part logo-coder-part" title="Ir a Perfil Coder">
+                    <span class="text-coder">Coder</span>
+                    <i class="fas fa-code icon-code"></i>
+                </a>
             </div>
-        </header>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="fixed inset-0 bg-dark-light z-50 transform translate-x-full right-0 left-auto transition-transform duration-300 ease-in-out">
-            <div class="container mx-auto px-4 py-6">
-                <div class="flex justify-between items-center mb-10">
-                    <a href="index.html" class="flex items-center">
-                        <span class="bg-white rounded-lg w-8 h-8 flex items-center justify-center mr-2 border border-gray-300 shadow" style="color: #2563EB;">D</span>
-                        <span class="font-bold text-2xl tracking-tight">DrugFindr</span>
-                    </a>
-                    <button id="close-menu" class="text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="flex flex-col space-y-6">
-                    <a href="#features" class="text-white text-xs font-light tracking-tight">Features</a>
-                    <a href="#demo" class="text-white text-xs font-light tracking-tight">Demo</a>
-                    <a href="#impact" class="text-white text-xs font-light tracking-tight">Impact</a>
-                    <a href="#research" class="text-white text-xs font-light tracking-tight">Research</a>
-                    <div class="h-px bg-white/10 my-2"></div>
-                    <a href="privacy-policy.html" class="text-white text-xs font-light tracking-tight">Privacy Policy</a>
-                    <a href="terms-of-service.html" class="text-white text-xs font-light tracking-tight">Terms of Service</a>
-                    <a href="license.html" class="text-white text-xs font-light tracking-tight">License</a>
-                    <a href="contact.html" class="text-white text-xs font-light tracking-tight">Contact</a>
-                </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                    <li><a href="#hero" data-i18n="nav.intro">Intro</a></li>
+                    <li><a href="#about" data-i18n="nav.about">About</a></li>
+                    <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+                    <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+                    <li><a href="#github" data-i18n="nav.github">GitHub</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <a href="#" class="lang-option active" data-lang="es">ES</a>
+                <span class="lang-separator">/</span>
+                <a href="#" class="lang-option" data-lang="en">EN</a>
             </div>
-        </div>
-        
-        <!-- Hero Content -->
-        <div class="container mx-auto px-4 h-full flex items-center">
-            <div class="hero-content max-w-4xl mx-auto py-20 md:py-32">
-                <span class="inline-block text-sm font-semibold text-white/80 uppercase tracking-wider mb-4">Next-gen pharmaceutical naming</span>
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-                    Revolutionizing <br/>Pharmaceutical Naming
-                </h1>
-                <p class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl">
-                    Automated generation and validation of pharmaceutical names using AI and FDA algorithms for regulatory compliance
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#features" class="btn-primary glow">
-                        <span>Explore Features</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                    <a href="#demo" class="btn-secondary">
-                        <span>Watch Demo</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white flex flex-col items-center cursor-pointer animate-bounce" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
-            <span class="text-sm mb-2">Scroll to explore</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
         </div>
     </header>
 
-    <main>
-        <!-- Features Section -->
-        <section id="features" class="py-24 bg-white dark:bg-dark-light relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 dark:from-transparent dark:to-primary/10 pointer-events-none"></div>
-            
-            <!-- Tech Grid Background -->
-            <div class="absolute inset-0 opacity-5 dark:opacity-10">
-                <div class="w-full h-full" style="background-image: radial-gradient(circle at 15px 15px, var(--primary) 2px, transparent 0); background-size: 30px 30px;"></div>
-            </div>
-            
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="text-center mb-16">
-                    <span class="inline-block text-sm font-semibold text-primary uppercase tracking-wider mb-4">Advanced Technology</span>
-                    <h2 class="section-title">Powerful Features</h2>
-                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Our cutting-edge platform offers comprehensive tools for pharmaceutical naming</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-icon icon-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Name Comparison</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Advanced comparison engine using FDA's POCA algorithms for precise similarity analysis</p>
-                    </div>
-                    
-                    <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="feature-icon icon-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Name Generation</h3>
-                        <p class="text-gray-600 dark:text-gray-300">AI-powered name generation system creating unique, compliant pharmaceutical names</p>
-                    </div>
-                    
-                    <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="feature-icon icon-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Advanced AI</h3>
-                        <p class="text-gray-600 dark:text-gray-300">State-of-the-art artificial intelligence for optimal name selection and validation</p>
-                    </div>
-                    
-                    <div class="glass-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="feature-icon icon-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">POCA Algorithms</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Implements FDA's POCA algorithms for maximum regulatory compliance</p>
-                    </div>
-                    
-                    <div class="glass-card" data-aos="fade-up" data-aos-delay="500">
-                        <div class="feature-icon icon-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">EMA Database</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Comprehensive access to EMA's pharmaceutical name database</p>
-                    </div>
-                    
-                    <div class="glass-card" data-aos="fade-up" data-aos-delay="600">
-                        <div class="feature-icon icon-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Export Reports</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Generate and export detailed name viability reports for regulatory submission</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Video Section -->
-        <section id="demo" class="video-section py-24 relative">
-            <div class="video-bg-dots"></div>
-            
-            <!-- Tech wave background -->
-            <div class="absolute bottom-0 left-0 right-0 h-32 overflow-hidden opacity-20 pointer-events-none">
-                <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-full">
-                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="var(--primary)" opacity=".5"></path>
-                    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="var(--primary)" opacity=".5"></path>
-                </svg>
-            </div>
-            
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="text-center mb-16">
-                    <span class="inline-block text-sm font-semibold text-primary uppercase tracking-wider mb-4">Live Demo</span>
-                    <h2 class="section-title">See DrugFindr in Action</h2>
-                    <p class="text-gray-300 max-w-2xl mx-auto">Experience our revolutionary pharmaceutical naming technology through this comprehensive demonstration</p>
-                </div>
-                
-                <div class="max-w-4xl mx-auto video-container" data-aos="fade-up">
-                    <div class="aspect-w-16 aspect-h-9 relative">
-                        <!-- Overlay de reproducción grande y visible -->
-                        <div class="play-button-overlay" id="play-overlay">
-                            <div class="play-button-large">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </div>
-                            <span class="play-text">Haz clic para reproducir</span>
-                        </div>
-                        
-                        <!-- Este botón #play-btn ya está oculto por CSS arriba con display:none !important -->
-                        <div class="video-play" id="play-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                        <img src="backgroundimage.png" alt="Video thumbnail" class="w-full h-full object-cover cursor-pointer" id="video-thumbnail">
-                        <div class="w-full h-full absolute inset-0 hidden" id="video-container">
-                            <iframe class="w-full h-full border-0" id="demo-video" src="" data-src="https://www.youtube.com/embed/eHKlkLMWz4s?si=3cDZ2OpYqNfTgY_i&autoplay=1" title="DrugFindr Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Impact Section -->
-        <section id="impact" class="py-24 bg-white dark:bg-dark-light relative overflow-hidden">
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="text-center mb-16">
-                    <span class="inline-block text-sm font-semibold text-primary uppercase tracking-wider mb-4">Impact</span>
-                    <h2 class="section-title">Our Impact</h2>
-                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">See how DrugFindr is transforming pharmaceutical naming across the industry</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="impact-icon icon-impact-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Increased Efficiency</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Significant reduction in time spent on name validation.</p>
-                    </div>
-                    
-                    <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="impact-icon icon-impact-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Higher Success Rate</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Improved likelihood of generated names passing regulatory review.</p>
-                    </div>
-                    
-                    <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="impact-icon icon-impact-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Cost Optimization</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Contributes to optimizing costs associated with regulatory submissions.</p>
-                    </div>
-                    
-                    <div class="glass-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="impact-icon icon-impact-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 016-6h6a6 6 0 016 6v1H9" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Continuous Innovation</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Driving innovation in the pharmaceutical name creation and validation process.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Research Section restaurada -->
-        <section id="research" class="py-24 animated-gradient text-white relative overflow-hidden">
-            <div class="absolute inset-0 pointer-events-none particles-container" id="particles-js"></div>
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="max-w-4xl mx-auto glass-card" data-aos="fade-up">
-                    <div class="flex flex-col md:flex-row items-center gap-8">
-                        <div class="feature-icon md:w-20 md:h-20 flex-shrink-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                            </svg>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-2xl font-semibold mb-4">Scientific Foundation</h3>
-                            <p class="mb-6 text-white/80">The following paper details why DrugFindr is superior to existing solutions in the market.</p>
-                            <a href="https://1drv.ms/w/c/37a2e0d88f7a3ba9/EQD73mhI_hJIsAMEa2iIV-UBGXam1riyBCZrJ--IwwZ6Wg?e=GWMZjs" 
-                               class="btn-primary"
-                               target="_blank">
-                                <span>Read Paper</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonios Carrusel -->
-        <section class="py-24 bg-white dark:bg-dark-light relative overflow-hidden">
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="max-w-4xl mx-auto glass-card" data-aos="fade-up">
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <h2 class="text-3xl font-bold mb-6">Ready to transform your pharmaceutical naming?</h2>
-                        <p class="text-gray-600 dark:text-gray-300 mb-8">Experience the power of DrugFindr today and revolutionize your regulatory process</p>
-                        <a href="https://github.com/Isandi98/POCA_DrugFindr" class="btn-primary" target="_blank">
-                            Try DrugFindr today
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="py-12 bg-dark-light text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5 pointer-events-none">
-            <div class="w-full h-full" style="background-image: linear-gradient(var(--primary) 1px, transparent 1px), linear-gradient(to right, var(--primary) 1px, transparent 1px); background-size: 20px 20px;"></div>
+    <section id="hero" class="hero">
+        <div class="hero-content container">
+            <h1 data-i18n="heroGreeting">Hola, soy <span class="highlight">Isaac Sandiumenge</span></h1>
+            <p class="subtitle" data-i18n="heroSubtitle">// Abogado | Aprendiz entusiasta de Programación</p>
+            <p style="margin-bottom: 30px; max-width: 600px; margin-left:auto; margin-right:auto;" data-i18n="heroDescription">Combinando mi profesión legal con mi curiosidad por la tecnología. Explorando el mundo de la programación en mi tiempo libre con la ayuda de IA y recursos autodidactas.</p>
+            <a href="#projects" class="cta-button" data-i18n="heroCtaProjects">Mis Proyectos</a>
         </div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-2 flex items-center">
-                        <span class="bg-white text-primary-dark rounded-lg w-8 h-8 flex items-center justify-center mr-2">D</span>
-                        DrugFindr
-                    </h3>
-                    <p>Revolutionizing pharmaceutical naming</p>
+    </section>
+
+    <section id="about" class="container">
+        <h2 class="section-title">Mi Viaje en la Programación</h2>
+        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <p class="fade-in" style="animation-delay: 0.2s;">Como abogado que trabaja a tiempo completo, mi tiempo para aprender programación es limitado. Mi interés comenzó con VBA en Excel para automatizar tareas repetitivas, y actualmente estoy dando mis primeros pasos en Python.</p>
+            <p class="fade-in" style="animation-delay: 0.4s;">Mi método de aprendizaje es principalmente práctico, trabajando en proyectos concretos con ayuda de inteligencia artificial. Uso IA como herramienta para avanzar en mis proyectos mientras aprendo de las soluciones que propone, adaptándolas a mis necesidades específicas.</p>
+            <p class="fade-in" style="animation-delay: 0.6s;">Aunque estoy al principio de este camino, me entusiasma crear puentes entre el mundo legal y el tecnológico, desarrollando pequeñas soluciones que faciliten mi trabajo diario como abogado.</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Mis Proyectos</h2>
+            <div class="projects-grid">
+                <!-- Fila Superior -->
+                <!-- Proyecto DrugFindr (Izquierda) -->
+                <div class="project-card fade-in" style="animation-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Proyecto DrugFindr">
+                    <div class="project-content">
+                        <h3>Software regulatorio farmacéutico: DrugFindr</h3>
+                        <p>Aplicación web para la comparación y generación de designaciones farmacéuticas que cumplan con los requisitos de la EMA.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span><span class="tag">C++</span><span class="tag">ChatGPT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="DrugFindr.html" target="_blank"><i class="fas fa-external-link-alt"></i> Ver Proyecto</a>
+                            <!-- <a href="#" target="_blank"><i class="fab fa-github"></i> Ver Código</a> -->
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-col md:flex-row items-center gap-6">
-                    <a href="privacy-policy.html" class="transition-colors">Privacy Policy</a>
-                    <a href="terms-of-service.html" class="transition-colors">Terms of Service</a>
-                    <a href="license.html" class="transition-colors">License</a>
-                    <a href="contact.html" class="transition-colors">Contact</a>
+
+                <!-- Proyecto Python (Derecha) -->
+                <div class="project-card fade-in" style="animation-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop" alt="Proyecto Generics Launching Forecast"> <!-- Imagen añadida -->
+                    <div class="project-content">
+                        <h3>Generics Launching Forecast</h3>
+                        <p>Software que predice cuándo saldrán los genéricos de un medicamento, considerando la situación de IP y regulatoria.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span><span class="tag">Aprendizaje IA</span><span class="tag">Principiante</span><span class="tag">EPO API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://luxemburg-register-229573331017.europe-west1.run.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Ver Proyecto</a>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Fila Inferior -->
+                <!-- Proyecto TrademarkFindr (Izquierda) -->
+                <div class="project-card fade-in" style="animation-delay: 0.3s;">
+                    <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=2070&auto=format&fit=crop" alt="Proyecto TrademarkFindr">
+                    <div class="project-content">
+                        <h3>TrademarkFindr</h3> <!-- Título cambiado -->
+                        <p>Software alimentado con la API de Trademark View de la EUIPO que permite buscar marcas, controlar marcas que pudieran generar riesgo e incluso resaltar descripción de clases de productos/servicios que podría ser infractora.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span><span class="tag">EUIPO</span><span class="tag">TrademarkView</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto VBA (Derecha) -->
+                <div class="project-card fade-in" style="animation-delay: 0.4s;">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=2064&auto=format&fit=crop" alt="Proyecto VBA en Excel">
+                    <div class="project-content">
+                        <h3>Proyectos con VBA en Excel</h3>
+                        <p></Em>Proyectos de programación de Excel con VBA, yendo desde un sistema de seguimiento de marcas desde la comodidad de una hoja de Excel con envío de notificaciones por correo electrónico si una marca pasa a estar concedida a una calculadora de plazos que predice en qué momento se llevará a cabo cada una de las etapas procesales para la concesión de una marca o procedimiento judicial con tan solo la fecha de presentación de la solicitud de marca o recurso.</p>
+                        <div class="project-tags">
+                            <span class="tag">Excel</span><span class="tag">VBA</span><span class="tag">Facturas</span>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
-            <div class="border-t border-white/10 mt-8 pt-8 text-center">
-                <p>&copy; 2025 Isaac Sandiumenge - DrugFindr. All rights reserved.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Mis Herramientas de Aprendizaje</h2>
+            <div class="skills-grid">
+                <div class="skill-item fade-in" style="animation-delay: 0.1s;"> <i class="fas fa-file-excel"></i> <span>VBA/Excel (Principiante)</span> </div>
+                <div class="skill-item fade-in" style="animation-delay: 0.2s;"> <i class="fab fa-python"></i> <span>Python (Principiante)</span> </div>
+                <div class="skill-item fade-in" style="animation-delay: 0.3s;"> <i class="fas fa-robot"></i> <span>Programación asistida por IA</span> </div>
+                <div class="skill-item fade-in" style="animation-delay: 0.4s;"> <i class="fas fa-book"></i> <span>Aprendizaje por libros</span> </div>
+                <div class="skill-item fade-in" style="animation-delay: 0.5s;"> <i class="fas fa-project-diagram"></i> <span>Aprendizaje por proyectos</span> </div>
+                <div class="skill-item fade-in" style="animation-delay: 0.6s;"> <i class="fas fa-graduation-cap"></i> <span>Autodidacta</span> </div>
             </div>
+        </div>
+    </section>
+
+    <section id="github">
+        <div class="container github-showcase">
+            <h2 class="section-title">Mi Aprendizaje</h2>
+            <p>Mi camino de aprendizaje es realista y adaptado a mis limitaciones de tiempo. Estoy explorando la programación mientras mantengo mi carrera legal, utilizando herramientas de IA para avanzar en proyectos prácticos y documentando mi progreso.</p>
+            <a href="https://github.com/Isandi98" target="_blank" class="cta-button github-profile-link"><i class="fab fa-github"></i> Ver mi Progreso en GitHub</a>
+        </div>
+    </section>
+    
+    <section id="contact" class="container" style="text-align: center;">
+         <h2 class="section-title">¿Conectamos?</h2>
+         <p style="max-width: 750px; margin: 0 auto 30px auto; font-size: 1.1rem; color: var(--text-light);">Si mi perfil te ha resultado interesante, estás buscando un profesional con mis habilidades, o simplemente te gustaría explorar posibles colaboraciones o intercambiar ideas, estaré encantado de que te pongas en contacto conmigo a través de los siguientes canales:</p>
+         <div class="contact-buttons" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <a href="mailto:isaac.sandi98@gmail.com" class="cta-button" style="min-width: 180px;"><i class="fas fa-envelope"></i> Enviar un Mensaje</a>
+            <a href="https://www.linkedin.com/in/isaac-yael-sandiumenge-torres-955063232/" target="_blank" class="cta-button cta-secondary" style="min-width: 180px;"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            <a href="https://github.com/Isandi98" target="_blank" class="cta-button cta-secondary" style="background-color: #333; color: white; border-color: #333; min-width: 180px;"><i class="fab fa-github"></i> GitHub</a>
+         </div>
+    </section>
+
+
+    <footer class="coder-footer">
+        <div class="container">
+            <div class="social-media">
+                <a href="https://github.com/Isandi98" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/isaac-yael-sandiumenge-torres-955063232/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <!-- Añade otras redes si es relevante -->
+            </div>
+            <div class="footer-contact-info">
+                <p style="color: var(--text-light);">Isaac Sandiumenge</p>
+                <p><a href="mailto:isaac.sandi98@gmail.com" style="color: var(--secondary-accent);">isaac.sandi98@gmail.com</a></p>
+            </div>
+            <div class="footer-links">
+                <!-- <a href="#privacidad">Política de Privacidad</a> -->
+            </div>
+            <p style="margin-top: 15px; color: var(--text-muted);">&copy; 2025 <a href="#hero" style="color: var(--primary-accent); text-decoration:none;">Isaac Sandiumenge</a>. Todos los derechos reservados.</p><a href="privacy.html" style="color: #888;">Política de Privacidad</a></p>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">"Abogado de día, Programador de noche"</p>
+            <a href="lawyer.html" class="balance-link-coder"><i class="fas fa-balance-scale"></i> Descubre mi lado más jurídico</a>
         </div>
     </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-
-        // Dark mode toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-            
-            // Update toggle icon
-            const icon = themeToggle.querySelector('svg');
-            if (document.body.classList.contains('dark-mode')) {
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
-            } else {
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
-            }
-        });
-        
-        // Mobile menu functionality
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const closeMenuButton = document.getElementById('close-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuButton && mobileMenu && closeMenuButton) {
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.remove('translate-x-full');
-            });
-            
-            closeMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.add('translate-x-full');
-            });
-            
-            // Close menu when clicking on a link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.add('translate-x-full');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('header nav a[href^="#"], .hero a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId.length > 1 && document.querySelector(targetId)) {
+                        document.querySelector(targetId).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        document.querySelectorAll('header nav a').forEach(a => a.classList.remove('active'));
+                        const navLink = document.querySelector(`header nav a[href="${targetId}"]`);
+                        if(navLink) navLink.classList.add('active');
+                    }
                 });
             });
-        }
-        
-        // Video player mejorado
-        const playBtn = document.getElementById('play-btn');
-        const videoThumbnail = document.getElementById('video-thumbnail');
-        const videoIframe = document.getElementById('demo-video');
-        const playOverlay = document.getElementById('play-overlay');
-        
-        function playVideo() {
-            const videoContainer = document.getElementById('video-container');
-            videoContainer.classList.remove('hidden');
-            videoIframe.src = videoIframe.getAttribute('data-src');
-            
-            videoThumbnail.classList.add('hidden');
-            if (playOverlay) {
-                playOverlay.classList.add('hidden');
-            }
-            
-            setTimeout(function() {
-                if (playOverlay) playOverlay.style.display = 'none';
-            }, 300);
-            
-            videoIframe.style.width = '100%';
-            videoIframe.style.height = '100%';
-            videoIframe.style.border = 'none';
-            videoIframe.style.margin = '0';
-            videoIframe.style.padding = '0';
-            videoIframe.style.overflow = 'hidden';
-            videoIframe.style.backgroundColor = '#000';
-            videoContainer.style.backgroundColor = '#000';
-        }
-        
-        if (playBtn) {
-            playBtn.addEventListener('click', playVideo);
-        }
-        
-        if (videoThumbnail) {
-            videoThumbnail.addEventListener('click', playVideo);
-        }
-        
-        if (playOverlay) {
-            playOverlay.addEventListener('click', playVideo);
-        }
-        
-        // Initialize particles.js
-        if (document.getElementById('particles-js')) {
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#ffffff"
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        },
-                        "polygon": {
-                            "nb_sides": 5
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.3,
-                        "random": true,
-                        "anim": {
-                            "enable": false,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": false,
-                            "speed": 40,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#ffffff",
-                        "opacity": 0.2,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                        "attract": {
-                            "enable": false,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": false,
-                            "mode": "repulse"
-                        },
-                        "onclick": {
-                            "enable": false,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    }
-                },
-                "retina_detect": true
-            });
-        }
-        
-        // Add float animation to CSS if not already present
-        if (!document.querySelector('style[data-float-animation]')) {
-            const style = document.createElement('style');
-            style.setAttribute('data-float-animation', 'true');
-            style.textContent = `
-                @keyframes float {
-                    0% { transform: translateY(0px) rotate(0deg); }
-                    50% { transform: translateY(-20px) rotate(5deg); }
-                    100% { transform: translateY(0px) rotate(0deg); }
-                }
-                
-                @media (prefers-reduced-motion: reduce) {
-                    .animate-bounce, [style*="animation:"], [style*="animation:"] * {
-                        animation: none !important;
-                        transition: none !important;
-                    }
-                }
-                
-                .bg-gradient-radial {
-                    background-image: radial-gradient(var(--primary-from, var(--primary-light)) 0%, var(--primary-to, transparent) 70%);
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Check for system dark mode preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('dark-mode');
-            if (themeToggle) {
-                const icon = themeToggle.querySelector('svg');
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
-            }
-        }
-        
-        // Listen for changes in color scheme
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (e.matches) {
-                document.body.classList.add('dark-mode');
-                if (themeToggle) {
-                    const icon = themeToggle.querySelector('svg');
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
-                }
-            } else {
-                document.body.classList.remove('dark-mode');
-                if (themeToggle) {
-                    const icon = themeToggle.querySelector('svg');
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
-                }
-            }
-        });
 
-        // Scrollspy para resaltar el enlace activo en el menú
-        const sections = ['features', 'demo', 'impact', 'research'];
-        const navLinks = document.querySelectorAll('.nav-link');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(id => {
-                const section = document.getElementById(id);
-                if (section) {
-                    const sectionTop = section.offsetTop - 120;
-                    if (window.scrollY >= sectionTop) {
-                        current = id;
+            // Active link highlighting on scroll
+            const sections = document.querySelectorAll("section[id]");
+            const navLinks = document.querySelectorAll("header nav a");
+
+            window.addEventListener("scroll", () => {
+                let current = ""; 
+                if (sections && sections.length > 0) {
+                    sections.forEach((section) => {
+                        const sectionTop = section.offsetTop;
+                        if (pageYOffset >= sectionTop - 100) { 
+                            current = section.getAttribute("id");
+                        }
+                    });
+                }
+
+                navLinks.forEach((a) => {
+                    a.classList.remove("active");
+                    const href = a.getAttribute("href");
+
+                    if (window.location.pathname.endsWith('index.html') && href === 'index.html') {
+                        a.classList.add("active");
+                    } else if (window.location.pathname.endsWith('coder.html')) {
+                        if (href === `#${current}`) {
+                            a.classList.add("active");
+                        }
+                        if (!current && href === "#hero" && sections.length > 0 && pageYOffset < sections[0].offsetTop - 100) {
+                            const introLink = document.querySelector('header nav a[href="#hero"]');
+                            if(introLink) introLink.classList.add('active');
+                        } else if (!current && href === "#hero" && sections.length === 0) {
+                            const introLink = document.querySelector('header nav a[href="#hero"]');
+                            if(introLink) introLink.classList.add('active');
+                        }
+                    } else if (window.location.pathname.endsWith('lawyer.html')) {
+                        if (href === `#${current}`) {
+                            a.classList.add("active");
+                        }
+                    }
+                });
+            });
+
+            // Simple fade-in animation on scroll for elements with .fade-in
+            const fadeInElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeInElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+
+            // Lógica del Widget de Chat
+            const chatFab = document.getElementById('chatWidgetFab');
+            const chatContainer = document.getElementById('chatWidgetContainer');
+            const closeChatButton = document.getElementById('closeChatWidget');
+            const chatMessagesContainer = document.getElementById('chatWidgetMessages');
+            const chatInput = document.getElementById('chatWidgetInput');
+            const chatSendButton = document.getElementById('chatWidgetSend');
+
+            const assistantId = "asst_LzFF1hAzGY6lyqdjdbDMQm0o"; 
+            const BACKEND_URL = "https://replit-backend.fly.dev";
+            let currentThreadId = null;
+
+            async function initializeChatWithAssistant() {
+                if (!currentThreadId) {
+                    console.log("Inicializando chat con el Asistente vía backend...");
+                    addMessageToChat("Conectando con el asistente...", 'bot', true);
+
+                    try {
+                        currentThreadId = await createThread();
+                        console.log("Nuevo Thread ID creado para inicialización (vía backend):", currentThreadId);
+
+                        await addMessageToThread(currentThreadId, "Hola, preséntate."); 
+                        const runId = await createRun(currentThreadId, assistantId);
+                        console.log("Run ID creado para inicialización (vía backend):", runId);
+
+                        await pollRunStatus(currentThreadId, runId);
+                        console.log("Run de inicialización completado (vía backend).");
+
+                        const assistantResponse = await getAssistantMessages(currentThreadId, runId);
+                        updateLastBotMessage(assistantResponse); 
+                    } catch (error) {
+                        console.error("Error inicializando chat con el Asistente (vía backend):", error);
+                        updateLastBotMessage(`Error al conectar con el asistente: ${error.message}. Por favor, intenta abrir y cerrar el chat o recarga la página.`, true);
                     }
                 }
-            });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
+            }
+
+            async function createThread() {
+                try {
+                    const response = await fetch(`${BACKEND_URL}/v1/threads`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`Error creando thread (vía backend): ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+                    }
+                    const data = await response.json();
+                    return data.id;
+                } catch (error) {
+                    console.error("Error en createThread (vía backend):", error);
+                    throw error;
                 }
+            }
+
+            async function addMessageToThread(threadId, userMessage) {
+                try {
+                    const response = await fetch(`${BACKEND_URL}/v1/threads/${threadId}/messages`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            role: "user",
+                            content: userMessage
+                        })
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`Error añadiendo mensaje (vía backend): ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+                    }
+                } catch (error) {
+                    console.error("Error en addMessageToThread (vía backend):", error);
+                    throw error;
+                }
+            }
+
+            async function createRun(threadId, assistantIdToUse) {
+                try {
+                    const response = await fetch(`${BACKEND_URL}/v1/threads/${threadId}/runs`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            assistant_id: assistantIdToUse
+                        })
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`Error creando run (vía backend): ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+                    }
+                    const data = await response.json();
+                    return data.id;
+                } catch (error) {
+                    console.error("Error en createRun (vía backend):", error);
+                    throw error;
+                }
+            }
+
+            async function pollRunStatus(threadId, runId) {
+                let run;
+                try {
+                    while (true) {
+                        const response = await fetch(`${BACKEND_URL}/v1/threads/${threadId}/runs/${runId}`, {
+                        });
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            throw new Error(`Error sondeando run (vía backend): ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+                        }
+                        run = await response.json();
+                        if (['completed', 'failed', 'cancelled', 'expired'].includes(run.status)) {
+                            break;
+                        }
+                        await new Promise(resolve => setTimeout(resolve, 1000)); 
+                    }
+
+                    if (run.status !== 'completed') {
+                        throw new Error(`Run finalizado con estado (vía backend): ${run.status}. Detalles: ${JSON.stringify(run.last_error || run.incomplete_details || run)}`);
+                    }
+                    return run;
+                } catch (error) {
+                    console.error("Error en pollRunStatus (vía backend):", error);
+                    throw error;
+                }
+            }
+
+            async function getAssistantMessages(threadId, lastRunId) {
+                try {
+                    const response = await fetch(`${BACKEND_URL}/v1/threads/${threadId}/messages?order=desc&limit=1`, {
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`Error obteniendo mensajes (vía backend): ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+                    }
+                    const data = await response.json();
+                    
+                    if (data.data && data.data.length > 0) {
+                        const lastMessage = data.data[0];
+                        if (lastMessage.role === 'assistant' && lastMessage.run_id === lastRunId) {
+                            let fullResponse = "";
+                            lastMessage.content.forEach(contentBlock => {
+                                if (contentBlock.type === 'text') {
+                                    fullResponse += contentBlock.text.value;
+                                }
+                            });
+                            let cleanedResponse = fullResponse.trim();
+                            cleanedResponse = cleanedResponse.replace(/【\d+:\d+†[^】]+?\.pdf】/g, '').trim();
+                            return cleanedResponse;
+                        }
+                    }
+                    return "No se encontró una respuesta nueva del asistente o el último mensaje no es del asistente para este run.";
+                } catch (error) {
+                    console.error("Error en getAssistantMessages:", error);
+                    throw error;
+                }
+            }
+
+            if (chatFab && chatContainer && closeChatButton && chatMessagesContainer && chatInput && chatSendButton) {
+                initializeChatWithAssistant(); 
+
+                chatFab.addEventListener('click', () => {
+                    chatContainer.classList.toggle('open');
+                });
+
+                closeChatButton.addEventListener('click', () => {
+                    chatContainer.classList.remove('open');
+                });
+
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+
+                chatSendButton.addEventListener('click', sendMessage);
+
+                async function sendMessage() {
+                    const messageText = chatInput.value.trim();
+                    if (messageText === "") return;
+
+                    addMessageToChat(messageText, 'user');
+                    chatInput.value = "";
+                    
+                    addMessageToChat("Pensando...", 'bot', true);
+
+                    try {
+                        if (!currentThreadId) {
+                            currentThreadId = await createThread();
+                            console.log("Nuevo Thread ID creado:", currentThreadId);
+                        }
+
+                        await addMessageToThread(currentThreadId, messageText);
+                        const runId = await createRun(currentThreadId, assistantId);
+                        console.log("Run ID creado:", runId);
+                        
+                        await pollRunStatus(currentThreadId, runId);
+                        console.log("Run completado.");
+
+                        const assistantResponse = await getAssistantMessages(currentThreadId, runId);
+                        updateLastBotMessage(assistantResponse);
+
+                    } catch (error) {
+                        console.error("Error en sendMessage (flujo del asistente):", error);
+                        updateLastBotMessage(`Lo siento, tuve un problema: ${error.message}. Revisa la consola para más detalles.`, true);
+                    }
+                }
+
+                function addMessageToChat(text, sender, isTemporaryStyle = false, isErrorStyle = false) {
+                    const messageElement = document.createElement('div');
+                    messageElement.classList.add('chat-message', `${sender.toLowerCase()}-message`);
+
+                    if (isTemporaryStyle && sender.toLowerCase() === 'bot') {
+                        messageElement.classList.add('is-typing');
+                        messageElement.innerHTML = `
+                            <div class="typing-indicator">
+                                <span></span><span></span><span></span>
+                            </div>
+                        `;
+                    } else if (isErrorStyle && sender.toLowerCase() === 'bot') {
+                        messageElement.classList.add('error');
+                        messageElement.innerHTML = `<div class="message-content">${text}</div>`;
+                    } else {
+                        const contentDiv = document.createElement('div');
+                        contentDiv.className = 'message-content';
+                        contentDiv.innerHTML = text.replace(/\n/g, '<br>');
+                        messageElement.appendChild(contentDiv);
+                    }
+
+                    chatMessagesContainer.appendChild(messageElement);
+                    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+                }
+
+                function updateLastBotMessage(text, isError = false) {
+                    const tempMessage = chatMessagesContainer.querySelector('.bot-message.is-typing');
+                    if (tempMessage) {
+                        tempMessage.classList.remove('is-typing');
+                        
+                        if (isError) {
+                            tempMessage.classList.add('error');
+                            tempMessage.innerHTML = `<div class="message-content">${text}</div>`;
+                        } else {
+                            tempMessage.innerHTML = `<div class="message-content">${text.replace(/\n/g, '<br>')}</div>`;
+                        }
+                    } else {
+                        addMessageToChat(text, 'bot', false, isError);
+                    }
+                    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+                }
+
+            } else {
+                console.warn("No se encontraron todos los elementos del widget de chat. La funcionalidad del chat estará deshabilitada.");
+            }
+
+            // --- LANGUAGE SWITCHER LOGIC ---
+            const translationsCoder = {
+                es: {
+                    nav: {
+                        home: "Home",
+                        intro: "Intro",
+                        about: "Sobre mí",
+                        projects: "Proyectos",
+                        skills: "Habilidades",
+                        github: "GitHub"
+                    },
+                    heroGreeting: 'Hola Mundo!',
+                    heroSubtitle: "// Abogado | Aprendiz entusiasta de Programación",
+                    heroDescription: "Combinando mi profesión legal con mi curiosidad por la tecnología. Explorando el mundo de la programación en mi tiempo libre con la ayuda de IA y recursos autodidactas.",
+                    heroCtaProjects: "Mis Proyectos",
+                    aboutTitle: "Mi Viaje en la Programación",
+                    aboutP1: "Como abogado que trabaja a tiempo completo, mi tiempo para aprender programación es limitado. Mi interés comenzó con VBA en Excel para automatizar tareas repetitivas, y actualmente estoy dando mis primeros pasos en Python.",
+                    aboutP2: "Mi método de aprendizaje es principalmente práctico, trabajando en proyectos concretos con ayuda de inteligencia artificial. Uso IA como herramienta para avanzar en mis proyectos mientras aprendo de las soluciones que propone, adaptándolas a mis necesidades específicas.",
+                    aboutP3: "Aunque estoy al principio de este camino, me entusiasma crear puentes entre el mundo legal y el tecnológico, desarrollando pequeñas soluciones que faciliten mi trabajo diario como abogado.",
+                    projectsTitle: "Mis Proyectos",
+                    project1Title: "Software regulatorio farmacéutico: DrugFindr",
+                    project1Desc: "Aplicación web para la comparación y generación de designaciones farmacéuticas que cumplan con los requisitos de la EMA.",
+                    project1Link: "Ver Proyecto",
+                    project2Title: "Generics Launching Forecast",
+                    project2Desc: "Software que predice cuándo saldrán los genéricos de un medicamento, considerando la situación de IP y regulatoria.",
+                    project2Link: "Ver Proyecto",
+                    project3Title: "TrademarkFindr",
+                    project3Desc: "Software alimentado con la API de Trademark View de la EUIPO que permite buscar marcas, controlar marcas que pudieran generar riesgo e incluso resaltar descripción de clases de productos/servicios que podría ser infractora.",
+                    project4Title: "Proyectos con VBA en Excel",
+                    project4Desc: "Proyectos de programación de Excel con VBA, yendo desde un sistema de seguimiento de marcas desde la comodidad de una hoja de Excel con envío de notificaciones por correo electrónico si una marca pasa a estar concedida a una calculadora de plazos que predice en qué momento se llevará a cabo cada una de las etapas procesales para la concesión de una marca o procedimiento judicial con tan solo la fecha de presentación de la solicitud de marca o recurso.",
+                    skillsTitle: "Mis Herramientas de Aprendizaje",
+                    skill1: "VBA/Excel (Principiante)",
+                    skill2: "Python (Principiante)",
+                    skill3: "Programación asistida por IA",
+                    skill4: "Aprendizaje por libros",
+                    skill5: "Aprendizaje por proyectos",
+                    skill6: "Autodidacta",
+                    githubTitle: "Mi Aprendizaje",
+                    githubDesc: "Mi camino de aprendizaje es realista y adaptado a mis limitaciones de tiempo. Estoy explorando la programación mientras mantengo mi carrera legal, utilizando herramientas de IA para avanzar en proyectos prácticos y documentando mi progreso.",
+                    githubLink: "Ver mi Progreso en GitHub",
+                    contactTitle: "¿Conectamos?",
+                    contactDesc: "Si mi perfil te ha resultado interesante, estás buscando un profesional con mis habilidades, o simplemente te gustaría explorar posibles colaboraciones o intercambiar ideas, estaré encantado de que te pongas en contacto conmigo a través de los siguientes canales:",
+                    contactButtonEmail: "Enviar un Mensaje",
+                    contactButtonLinkedIn: "LinkedIn",
+                    contactButtonGitHub: "GitHub",
+                    footerCopyright: '© 2025 <a href="#hero" style="color: var(--primary-accent); text-decoration:none;">Isaac Sandiumenge</a>. Todos los derechos reservados.',
+                    footerQuote: '"Abogado de día, Programador de noche"',
+                    footerLegalSideLink: "Descubre mi lado más jurídico",
+                    chatHeader: "Pregúntame!",
+                    chatPlaceholder: "Escribe tu mensaje..."
+                },
+                en: {
+                    nav: {
+                        home: "Home",
+                        intro: "Intro",
+                        about: "About",
+                        projects: "Projects",
+                        skills: "Skills",
+                        github: "GitHub"
+                    },
+                    heroGreeting: 'Hello world!',
+                    heroSubtitle: "// Lawyer | Enthusiastic Programming Learner",
+                    heroDescription: "Combining my legal profession with my curiosity for technology. Exploring the world of programming in my free time with the help of AI and self-taught resources.",
+                    heroCtaProjects: "My Projects",
+                    aboutTitle: "My Programming Journey",
+                    aboutP1: "As a full-time lawyer, my time for learning programming is limited. My interest began with VBA in Excel to automate repetitive tasks, and I am currently taking my first steps in Python.",
+                    aboutP2: "My learning method is primarily practical, working on concrete projects with the help of artificial intelligence. I use AI as a tool to advance my projects while learning from the solutions it proposes, adapting them to my specific needs.",
+                    aboutP3: "Although I am at the beginning of this path, I am excited to build bridges between the legal and technological worlds, developing small solutions that facilitate my daily work as a lawyer.",
+                    projectsTitle: "My Projects",
+                    project1Title: "Pharmaceutical Regulatory Software: DrugFindr",
+                    project1Desc: "Web application for comparing and generating pharmaceutical designations that meet EMA requirements.",
+                    project1Link: "View Project",
+                    project2Title: "Generics Launching Forecast",
+                    project2Desc: "Software that predicts when the generics of a medicine will be launched, considering the IP and regulatory landscape.",
+                    project2Link: "View Project",
+                    project3Title: "TrademarkFindr",
+                    project3Desc: "Software powered by EUIPO's Trademark View API that allows searching for trademarks, monitoring trademarks that could pose a risk, and even highlighting descriptions of product/service classes that could be infringing.",
+                    project4Title: "Projects with VBA in Excel",
+                    project4Desc: "Excel programming projects with VBA, ranging from a trademark tracking system from the comfort of an Excel sheet with email notifications if a trademark is granted, to a deadline calculator that predicts when each procedural stage for granting a trademark or judicial proceeding will take place with just the filing date of the trademark application or appeal.",
+                    skillsTitle: "My Learning Tools",
+                    skill1: "VBA/Excel (Beginner)",
+                    skill2: "Python (Beginner)",
+                    skill3: "AI-assisted Programming",
+                    skill4: "Learning from books",
+                    skill5: "Project-based learning",
+                    skill6: "Self-taught",
+                    githubTitle: "My Learning",
+                    githubDesc: "My learning path is realistic and adapted to my time constraints. I am exploring programming while maintaining my legal career, using AI tools to advance practical projects and documenting my progress.",
+                    githubLink: "View my Progress on GitHub",
+                    contactTitle: "Let's Connect?",
+                    contactDesc: "If you found my profile interesting, are looking for a professional with my skills, or would simply like to explore possible collaborations or exchange ideas, I would be delighted for you to contact me through the following channels:",
+                    contactButtonEmail: "Send a Message",
+                    contactButtonLinkedIn: "LinkedIn",
+                    contactButtonGitHub: "GitHub",
+                    footerCopyright: '© 2025 <a href="#hero" style="color: var(--primary-accent); text-decoration:none;">Isaac Sandiumenge</a>. All rights reserved.',
+                    footerQuote: '"Lawyer by day, Coder by night"',
+                    footerLegalSideLink: "Discover my legal side",
+                    chatHeader: "Ask me!",
+                    chatPlaceholder: "Type your message..."
+                }
+            };
+            
+            // Initialize i18next
+            i18next.init({
+                lng: localStorage.getItem('preferredLanguageCoder') || 'es',
+                debug: true, // Set to false for production
+                resources: {
+                    es: { translation: translationsCoder.es },
+                    en: { translation: translationsCoder.en }
+                }
+            }).then(function(t) {
+                updateUICoder(); // Call a function to update UI once i18next is initialized
+            });
+
+            function updateUICoder() {
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    element.innerHTML = i18next.t(key);
+                });
+                // Call the original changeLanguageCoder function to handle elements not using data-i18n
+                // Ensure it doesn't try to re-translate elements already handled by i18next
+                const currentLang = i18next.language;
+                if (translationsCoder[currentLang]) {
+                    const T = translationsCoder[currentLang];
+                    
+                    // Translate elements NOT using data-i18n (original logic from changeLanguageCoder)
+                    // Hero (example, as it's already in translationsCoder.es/en.heroGreeting)
+                    // const heroH1 = document.querySelector('.hero-content h1');
+                    // if (heroH1 && T.heroGreeting) heroH1.innerHTML = T.heroGreeting; // Already handled by data-i18n if attribute is added
+
+                    const heroSubtitle = document.querySelector('.hero-content .subtitle');
+                    if (heroSubtitle && T.heroSubtitle) heroSubtitle.innerText = T.heroSubtitle;
+                    const heroDescP = document.querySelector('.hero-content p[style*="margin-bottom: 30px"]');
+                    if (heroDescP && T.heroDescription) heroDescP.innerText = T.heroDescription;
+                    const heroCta = document.querySelector('.hero-content a.cta-button[href="#projects"]');
+                    if (heroCta && T.heroCtaProjects) heroCta.innerText = T.heroCtaProjects; // Already handled if data-i18n added
+
+                    // About Section
+                    const aboutTitleEl = document.querySelector('#about .section-title');
+                    if (aboutTitleEl && T.aboutTitle) aboutTitleEl.innerText = T.aboutTitle;
+                    const aboutParas = document.querySelectorAll('#about div[style*="text-align: center"] p');
+                    if (aboutParas.length > 0 && T.aboutP1) aboutParas[0].innerText = T.aboutP1;
+                    if (aboutParas.length > 1 && T.aboutP2) aboutParas[1].innerText = T.aboutP2;
+                    if (aboutParas.length > 2 && T.aboutP3) aboutParas[2].innerText = T.aboutP3;
+
+                    // Projects Section
+                    const projectsTitleEl = document.querySelector('#projects .section-title');
+                    if (projectsTitleEl && T.projectsTitle) projectsTitleEl.innerText = T.projectsTitle;
+                    const projectCards = document.querySelectorAll('#projects .project-card');
+                    if (projectCards.length > 0) {
+                        const card1Title = projectCards[0].querySelector('h3');
+                        if (card1Title && T.project1Title) card1Title.innerText = T.project1Title;
+                        const card1Desc = projectCards[0].querySelector('p');
+                        if (card1Desc && T.project1Desc) card1Desc.innerText = T.project1Desc;
+                        const card1Link = projectCards[0].querySelector('.project-links a');
+                        if (card1Link && T.project1Link) card1Link.innerHTML = `<i class="fas fa-external-link-alt"></i> ${T.project1Link}`;
+                    }
+                    if (projectCards.length > 1) {
+                        const card2Title = projectCards[1].querySelector('h3');
+                        if (card2Title && T.project2Title) card2Title.innerText = T.project2Title;
+                        const card2Desc = projectCards[1].querySelector('p');
+                        if (card2Desc && T.project2Desc) card2Desc.innerText = T.project2Desc;
+                        const card2Link = projectCards[1].querySelector('.project-links a');
+                        if (card2Link && T.project2Link) card2Link.innerHTML = `<i class="fas fa-external-link-alt"></i> ${T.project2Link}`;
+                    }
+                    if (projectCards.length > 2) {
+                        const card3Title = projectCards[2].querySelector('h3');
+                        if (card3Title && T.project3Title) card3Title.innerText = T.project3Title;
+                        const card3Desc = projectCards[2].querySelector('p');
+                        if (card3Desc && T.project3Desc) card3Desc.innerText = T.project3Desc;
+                    }
+                    if (projectCards.length > 3) {
+                        const card4Title = projectCards[3].querySelector('h3');
+                        if (card4Title && T.project4Title) card4Title.innerText = T.project4Title;
+                        const card4DescP = projectCards[3].querySelector('p');
+                        if (card4DescP && T.project4Desc) card4DescP.innerText = T.project4Desc;
+                    }
+                    
+                    // Skills Section
+                    const skillsTitleEl = document.querySelector('#skills .section-title');
+                    if (skillsTitleEl && T.skillsTitle) skillsTitleEl.innerText = T.skillsTitle;
+                    const skillItems = document.querySelectorAll('#skills .skill-item span');
+                    if (skillItems.length > 0 && T.skill1) skillItems[0].innerText = T.skill1;
+                    if (skillItems.length > 1 && T.skill2) skillItems[1].innerText = T.skill2;
+                    if (skillItems.length > 2 && T.skill3) skillItems[2].innerText = T.skill3;
+                    if (skillItems.length > 3 && T.skill4) skillItems[3].innerText = T.skill4;
+                    if (skillItems.length > 4 && T.skill5) skillItems[4].innerText = T.skill5;
+                    if (skillItems.length > 5 && T.skill6) skillItems[5].innerText = T.skill6;
+
+                    // GitHub Section
+                    const githubTitleEl = document.querySelector('#github .section-title');
+                    if (githubTitleEl && T.githubTitle) githubTitleEl.innerText = T.githubTitle;
+                    const githubDescP = document.querySelector('#github .github-showcase p');
+                    if (githubDescP && T.githubDesc) githubDescP.innerText = T.githubDesc;
+                    const githubLinkA = document.querySelector('#github .github-showcase a.cta-button');
+                    if (githubLinkA && T.githubLink) githubLinkA.innerHTML = `<i class="fab fa-github"></i> ${T.githubLink}`;
+
+                    // Contact Section
+                    const contactTitleEl = document.querySelector('#contact .section-title');
+                    if (contactTitleEl && T.contactTitle) contactTitleEl.innerText = T.contactTitle;
+                    const contactDescP = document.querySelector('#contact p[style*="max-width: 750px"]');
+                    if (contactDescP && T.contactDesc) contactDescP.innerText = T.contactDesc;
+                    const contactButtons = document.querySelectorAll('#contact .contact-buttons a');
+                    if (contactButtons.length > 0 && T.contactButtonEmail) contactButtons[0].innerHTML = `<i class="fas fa-envelope"></i> ${T.contactButtonEmail}`;
+                    if (contactButtons.length > 1 && T.contactButtonLinkedIn) contactButtons[1].innerHTML = `<i class="fab fa-linkedin-in"></i> ${T.contactButtonLinkedIn}`;
+                    if (contactButtons.length > 2 && T.contactButtonGitHub) contactButtons[2].innerHTML = `<i class="fab fa-github"></i> ${T.contactButtonGitHub}`;
+
+                    // Footer
+                    const copyrightP = document.querySelector('footer.coder-footer p[style*="margin-top: 15px"]');
+                    if (copyrightP && T.footerCopyright) copyrightP.innerHTML = T.footerCopyright;
+
+                    const quoteP = document.querySelector('footer.coder-footer p[style*="font-size: 0.8rem"]');
+                    if (quoteP && T.footerQuote) quoteP.innerText = T.footerQuote;
+                    
+                    const legalSideLink = document.querySelector('footer.coder-footer a.balance-link-coder');
+                    if (legalSideLink && T.footerLegalSideLink) legalSideLink.innerHTML = `<i class="fas fa-balance-scale"></i> ${T.footerLegalSideLink}`;
+
+                    // Chat Widget
+                    const chatHeaderSpan = document.querySelector('.chat-widget-header span:first-child');
+                    if (chatHeaderSpan && T.chatHeader) chatHeaderSpan.innerText = T.chatHeader;
+                    const chatInputEl = document.getElementById('chatWidgetInput');
+                    if (chatInputEl && T.chatPlaceholder) chatInputEl.placeholder = T.chatPlaceholder;
+                }
+
+                // Update active language button
+                document.querySelectorAll('.language-selector .lang-option').forEach(opt => {
+                    opt.classList.remove('active');
+                    if (opt.getAttribute('data-lang') === i18next.language) {
+                        opt.classList.add('active');
+                    }
+                });
+                localStorage.setItem('preferredLanguageCoder', i18next.language);
+            }
+            
+            function changeLanguageCoder(lang) { // This function now mainly changes the language and triggers UI update
+                i18next.changeLanguage(lang).then(t => {
+                    updateUICoder();
+                });
+            }
+
+            const langOptionsCoder = document.querySelectorAll('.language-selector .lang-option');
+            langOptionsCoder.forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const selectedLang = opt.getAttribute('data-lang');
+                    changeLanguageCoder(selectedLang);
+                });
             });
         });
     </script>
+
+    <!-- Widget de Chat Asistente HTML -->
+    <div class="chat-widget-fab" id="chatWidgetFab">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+
+    <div class="chat-widget-container" id="chatWidgetContainer">
+        <div class="chat-widget-header">
+            <span>Pregúntame!</span>
+            <span class="close-chat" id="closeChatWidget">&times;</span>
+        </div>
+        <div class="chat-widget-messages" id="chatWidgetMessages">
+            <!-- Mensajes del chat se añadirán aquí -->
+            <!-- <div class="bot-message">Hola 👋! Soy tu asistente virtual. Pregúntame sobre el contenido de esta página.</div> -->
+        </div>
+        <div class="chat-widget-input">
+            <input type="text" id="chatWidgetInput" placeholder="Escribe tu mensaje...">
+            <button id="chatWidgetSend"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
 </body>
-</html>
+</html> 
+
 
 
 
