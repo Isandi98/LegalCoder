@@ -1889,9 +1889,9 @@
                     <div class="info-box-content">
                         <ul>
                             <li>
-                                <span class="item-date">11/2025 – actualidad</span>
+                                <span class="item-date">01/11/2025 – actualidad</span>
                                 <span class="item-title">Regulatory Technical Specialist</span>
-                                <span class="item-subtitle">CellsIA</span>
+                                <span class="item-subtitle">CellsIA Technologies SL</span>
                                 <div class="experience-timeline" data-start-date="2025-11-01">
                                     <span class="timeline-duration" id="cellsia-duration">Calculando...</span>
                                     <div class="timeline-bar-container">
@@ -1900,10 +1900,10 @@
                                 </div>
                             </li>
                             <li>
-                                <span class="item-date">05/02/2024 – actualidad</span>
+                                <span class="item-date">05/02/2024 – 30/11/2025</span>
                                 <span class="item-title">Técnico Jurídico en prácticas en el Departamento Corporativo de Propiedad Industrial e Intelectual</span>
                                 <span class="item-subtitle">Laboratorios Farmacéuticos ROVI, S.A.</span>
-                                <div class="experience-timeline" data-start-date="2024-02-05">
+                                <div class="experience-timeline" data-duration-months="21">
                                     <span class="timeline-duration" id="rovi-duration">Calculando...</span>
                                     <div class="timeline-bar-container">
                                         <div class="timeline-bar" id="rovi-timeline-bar"></div>
@@ -2278,7 +2278,7 @@
             }
         }
 
-        // Script para calcular dinámicamente la duración de la experiencia profesional
+        // Script para calcular dinámicamente la duración de la experiencia en ROVI
         document.addEventListener('DOMContentLoaded', function() {
             const cellsiaDurationElement = document.getElementById('cellsia-duration');
             const cellsiaTimelineBar = document.getElementById('cellsia-timeline-bar');
@@ -2296,110 +2296,71 @@
             const dlaExperienceItem = dlaTimelineBar ? dlaTimelineBar.closest('.experience-timeline') : null;
             const sindicExperienceItem = sindicTimelineBar ? sindicTimelineBar.closest('.experience-timeline') : null;
 
+            const roviDurationMonthsAttr = roviExperienceItem ? parseFloat(roviExperienceItem.getAttribute('data-duration-months')) || 0 : 0;
             const juzgadoDurationMonthsAttr = juzgadoExperienceItem ? parseFloat(juzgadoExperienceItem.getAttribute('data-duration-months')) || 0 : 0;
             const dlaPiperDurationMonthsAttr = dlaExperienceItem ? parseFloat(dlaExperienceItem.getAttribute('data-duration-months')) || 0 : 0;
             const sindicGreugesDurationMonthsAttr = sindicExperienceItem ? parseFloat(sindicExperienceItem.getAttribute('data-duration-months')) || 0 : 0;
             
             let cellsiaCalculatedMonths = 0;
-            let cellsiaYears = 0;
-            let cellsiaDisplayMonths = 0;
-            let roviCalculatedMonths = 0;
-            let roviYears = 0; 
-            let roviDisplayMonths = 0; 
+
+            function calculateCurrentExperienceDuration(experienceItem, durationElement) {
+                if (!experienceItem || !durationElement) {
+                    return 0;
+                }
+
+                const startDateString = experienceItem.getAttribute('data-start-date');
+                if (!startDateString) {
+                    return 0;
+                }
+
+                const startDate = new Date(startDateString);
+                const today = new Date();
+
+                let years = today.getFullYear() - startDate.getFullYear();
+                let displayMonths = today.getMonth() - startDate.getMonth();
+
+                if (displayMonths < 0 || (displayMonths === 0 && today.getDate() < startDate.getDate())) {
+                    years--;
+                    displayMonths += 12;
+                }
+
+                if (today.getDate() < startDate.getDate() && !(today.getFullYear() === startDate.getFullYear() && today.getMonth() === startDate.getMonth())) {
+                    if (displayMonths > 0) {
+                        displayMonths--;
+                    } else if (years > 0) {
+                        years--;
+                        displayMonths = 11;
+                    }
+                }
+
+                if (today.getFullYear() === startDate.getFullYear() && today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate()) {
+                    displayMonths = 0;
+                }
+
+                let calculatedMonths = years * 12 + displayMonths;
+                if (calculatedMonths < 0) calculatedMonths = 0;
+
+                let durationText = "";
+                if (years > 0) {
+                    durationText += years + (years === 1 ? " año" : " años");
+                }
+                if (displayMonths > 0) {
+                    if (years > 0) durationText += " y ";
+                    durationText += displayMonths + (displayMonths === 1 ? " mes" : " meses");
+                }
+                if (durationText === "" && calculatedMonths >= 0) {
+                    durationText = (today >= startDate) ? "Menos de un mes" : "Próximamente";
+                }
+
+                durationElement.textContent = durationText +
+                    (calculatedMonths > 0 && today >= startDate ? " (En curso)" :
+                    (calculatedMonths === 0 && today >= startDate ? " (Iniciando)" :
+                    (today < startDate ? " (Próximamente)" : "")));
+
+                return calculatedMonths;
+            }
             
-            if (cellsiaExperienceItem && cellsiaDurationElement) {
-                const startDateString = cellsiaExperienceItem.getAttribute('data-start-date');
-                if (startDateString) {
-                    const startDate = new Date(startDateString);
-                    const today = new Date();
-
-                    cellsiaYears = today.getFullYear() - startDate.getFullYear();
-                    cellsiaDisplayMonths = today.getMonth() - startDate.getMonth();
-
-                    if (cellsiaDisplayMonths < 0 || (cellsiaDisplayMonths === 0 && today.getDate() < startDate.getDate())) {
-                        cellsiaYears--;
-                        cellsiaDisplayMonths += 12;
-                    }
-
-                    if (today.getDate() < startDate.getDate() && !(today.getFullYear() === startDate.getFullYear() && today.getMonth() === startDate.getMonth())) {
-                         if (cellsiaDisplayMonths > 0) {
-                            cellsiaDisplayMonths--;
-                         } else if (cellsiaYears > 0) {
-                            cellsiaYears--;
-                            cellsiaDisplayMonths = 11;
-                         }
-                    }
-                    if (today.getFullYear() === startDate.getFullYear() && today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate()) {
-                        cellsiaDisplayMonths = 0;
-                    }
-
-                    cellsiaCalculatedMonths = cellsiaYears * 12 + cellsiaDisplayMonths;
-                    if (cellsiaCalculatedMonths < 0) cellsiaCalculatedMonths = 0;
-
-                    let durationTextCellsia = "";
-                    if (cellsiaYears > 0) {
-                        durationTextCellsia += cellsiaYears + (cellsiaYears === 1 ? " año" : " años");
-                    }
-                    if (cellsiaDisplayMonths > 0) {
-                        if (cellsiaYears > 0) durationTextCellsia += " y ";
-                        durationTextCellsia += cellsiaDisplayMonths + (cellsiaDisplayMonths === 1 ? " mes" : " meses");
-                    }
-                    if (durationTextCellsia === "" && cellsiaCalculatedMonths >= 0) {
-                        durationTextCellsia = (today >= startDate) ? "Menos de un mes" : "Próximamente";
-                    }
-                    cellsiaDurationElement.textContent = durationTextCellsia +
-                                                    (cellsiaCalculatedMonths > 0 && today >= startDate ? " (En curso)" :
-                                                    (cellsiaCalculatedMonths === 0 && today >= startDate ? " (Iniciando)" :
-                                                    (today < startDate ? " (Próximamente)" : "")));
-                }
-            }
-
-            if (roviExperienceItem && roviDurationElement) {
-                const startDateString = roviExperienceItem.getAttribute('data-start-date');
-                if (startDateString) {
-                    const startDate = new Date(startDateString);
-                    const today = new Date();
-
-                    roviYears = today.getFullYear() - startDate.getFullYear();
-                    roviDisplayMonths = today.getMonth() - startDate.getMonth();
-                    
-                    if (roviDisplayMonths < 0 || (roviDisplayMonths === 0 && today.getDate() < startDate.getDate())) {
-                        roviYears--;
-                        roviDisplayMonths += 12;
-                    }
-                    
-                    if (today.getDate() < startDate.getDate() && !(today.getFullYear() === startDate.getFullYear() && today.getMonth() === startDate.getMonth())){
-                         if (roviDisplayMonths > 0) {
-                            roviDisplayMonths--;
-                         } else if (roviYears > 0) { 
-                            roviYears--;
-                            roviDisplayMonths = 11;
-                         } 
-                    }
-                    if (today.getFullYear() === startDate.getFullYear() && today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate()) {
-                        roviDisplayMonths = 0; 
-                    }
-
-                    roviCalculatedMonths = roviYears * 12 + roviDisplayMonths;
-                    if (roviCalculatedMonths < 0) roviCalculatedMonths = 0; 
-
-                    let durationTextRovi = "";
-                    if (roviYears > 0) {
-                        durationTextRovi += roviYears + (roviYears === 1 ? " año" : " años");
-                    }
-                    if (roviDisplayMonths > 0) {
-                        if (roviYears > 0) durationTextRovi += " y ";
-                        durationTextRovi += roviDisplayMonths + (roviDisplayMonths === 1 ? " mes" : " meses");
-                    }
-                    if (durationTextRovi === "" && roviCalculatedMonths >= 0) {
-                       durationTextRovi = (today >= startDate) ? "Menos de un mes" : "Próximamente";
-                    }
-                    roviDurationElement.textContent = durationTextRovi + 
-                                                  (roviCalculatedMonths > 0 && today >= startDate ? " (En curso)" : 
-                                                  (roviCalculatedMonths === 0 && today >= startDate ? " (Iniciando)" : 
-                                                  (today < startDate ? " (Próximamente)" : "")));
-                }
-            }
+            cellsiaCalculatedMonths = calculateCurrentExperienceDuration(cellsiaExperienceItem, cellsiaDurationElement);
 
             function formatDurationToYearsMonths(totalMonths) {
                 if (isNaN(totalMonths) || totalMonths <= 0) {
@@ -2435,6 +2396,7 @@
             }
 
             const experiencesFixedData = [
+                { item: roviExperienceItem, months: roviDurationMonthsAttr },
                 { item: juzgadoExperienceItem, months: juzgadoDurationMonthsAttr },
                 { item: dlaExperienceItem, months: dlaPiperDurationMonthsAttr },
                 { item: sindicExperienceItem, months: sindicGreugesDurationMonthsAttr }
@@ -2449,7 +2411,7 @@
                 }
             });
 
-            const totalExperienceAllMonths = cellsiaCalculatedMonths + roviCalculatedMonths + juzgadoDurationMonthsAttr + dlaPiperDurationMonthsAttr + sindicGreugesDurationMonthsAttr;
+            const totalExperienceAllMonths = cellsiaCalculatedMonths + roviDurationMonthsAttr + juzgadoDurationMonthsAttr + dlaPiperDurationMonthsAttr + sindicGreugesDurationMonthsAttr;
 
             if (totalExperienceDurationElement) {
                 totalExperienceDurationElement.textContent = "(" + formatDurationToYearsMonths(totalExperienceAllMonths) + ")";
@@ -2467,7 +2429,7 @@
             }
 
             updateProgressBar(cellsiaTimelineBar, cellsiaCalculatedMonths, totalExperienceAllMonths);
-            updateProgressBar(roviTimelineBar, roviCalculatedMonths, totalExperienceAllMonths);
+            updateProgressBar(roviTimelineBar, roviDurationMonthsAttr, totalExperienceAllMonths);
             updateProgressBar(juzgadoTimelineBar, juzgadoDurationMonthsAttr, totalExperienceAllMonths);
             updateProgressBar(dlaTimelineBar, dlaPiperDurationMonthsAttr, totalExperienceAllMonths);
             updateProgressBar(sindicTimelineBar, sindicGreugesDurationMonthsAttr, totalExperienceAllMonths);
