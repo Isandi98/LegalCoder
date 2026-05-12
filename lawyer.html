@@ -2141,7 +2141,7 @@
                 <p>Isaac Yael Sandiumenge Torres</p>
                 <p><a href="mailto:isaac.sandi98@gmail.com">isaac.sandi98@gmail.com</a></p>
             </div>
-            <p style="margin-top: 15px;">&copy; 2026 Isaac Yael Sandiumenge Torres. <a href="privacy.html" style="color: #888;">Política de Privacidad</a></p>
+            <p style="margin-top: 15px;">&copy; 2025 Isaac Yael Sandiumenge Torres. <a href="privacy.html" style="color: #888;">Política de Privacidad</a></p>
             <p style="font-size: 0.8rem; margin-top: 10px; color: #999;">Este es un espacio personal. Las opiniones expresadas aquí son propias y no representan necesariamente las de mi empleador.</p>
             <a href="coder.html" class="balance-link"><i class="fas fa-laptop-code"></i> Descubre mi lado más tech</a>
         </div>
@@ -2278,8 +2278,10 @@
             }
         }
 
-        // Script para calcular dinámicamente la duración de la experiencia en ROVI
+        // Script para calcular dinámicamente la duración de la experiencia profesional
         document.addEventListener('DOMContentLoaded', function() {
+            const cellsiaDurationElement = document.getElementById('cellsia-duration');
+            const cellsiaTimelineBar = document.getElementById('cellsia-timeline-bar');
             const roviDurationElement = document.getElementById('rovi-duration');
             const roviTimelineBar = document.getElementById('rovi-timeline-bar');
             const totalExperienceDurationElement = document.getElementById('total-experience-duration-box');
@@ -2288,6 +2290,7 @@
             const dlaTimelineBar = document.getElementById('dla-timeline-bar');
             const sindicTimelineBar = document.getElementById('sindic-timeline-bar');
 
+            const cellsiaExperienceItem = cellsiaTimelineBar ? cellsiaTimelineBar.closest('.experience-timeline') : null;
             const roviExperienceItem = roviTimelineBar ? roviTimelineBar.closest('.experience-timeline') : null;
             const juzgadoExperienceItem = juzgadoTimelineBar ? juzgadoTimelineBar.closest('.experience-timeline') : null;
             const dlaExperienceItem = dlaTimelineBar ? dlaTimelineBar.closest('.experience-timeline') : null;
@@ -2297,10 +2300,60 @@
             const dlaPiperDurationMonthsAttr = dlaExperienceItem ? parseFloat(dlaExperienceItem.getAttribute('data-duration-months')) || 0 : 0;
             const sindicGreugesDurationMonthsAttr = sindicExperienceItem ? parseFloat(sindicExperienceItem.getAttribute('data-duration-months')) || 0 : 0;
             
+            let cellsiaCalculatedMonths = 0;
+            let cellsiaYears = 0;
+            let cellsiaDisplayMonths = 0;
             let roviCalculatedMonths = 0;
             let roviYears = 0; 
             let roviDisplayMonths = 0; 
             
+            if (cellsiaExperienceItem && cellsiaDurationElement) {
+                const startDateString = cellsiaExperienceItem.getAttribute('data-start-date');
+                if (startDateString) {
+                    const startDate = new Date(startDateString);
+                    const today = new Date();
+
+                    cellsiaYears = today.getFullYear() - startDate.getFullYear();
+                    cellsiaDisplayMonths = today.getMonth() - startDate.getMonth();
+
+                    if (cellsiaDisplayMonths < 0 || (cellsiaDisplayMonths === 0 && today.getDate() < startDate.getDate())) {
+                        cellsiaYears--;
+                        cellsiaDisplayMonths += 12;
+                    }
+
+                    if (today.getDate() < startDate.getDate() && !(today.getFullYear() === startDate.getFullYear() && today.getMonth() === startDate.getMonth())) {
+                         if (cellsiaDisplayMonths > 0) {
+                            cellsiaDisplayMonths--;
+                         } else if (cellsiaYears > 0) {
+                            cellsiaYears--;
+                            cellsiaDisplayMonths = 11;
+                         }
+                    }
+                    if (today.getFullYear() === startDate.getFullYear() && today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate()) {
+                        cellsiaDisplayMonths = 0;
+                    }
+
+                    cellsiaCalculatedMonths = cellsiaYears * 12 + cellsiaDisplayMonths;
+                    if (cellsiaCalculatedMonths < 0) cellsiaCalculatedMonths = 0;
+
+                    let durationTextCellsia = "";
+                    if (cellsiaYears > 0) {
+                        durationTextCellsia += cellsiaYears + (cellsiaYears === 1 ? " año" : " años");
+                    }
+                    if (cellsiaDisplayMonths > 0) {
+                        if (cellsiaYears > 0) durationTextCellsia += " y ";
+                        durationTextCellsia += cellsiaDisplayMonths + (cellsiaDisplayMonths === 1 ? " mes" : " meses");
+                    }
+                    if (durationTextCellsia === "" && cellsiaCalculatedMonths >= 0) {
+                        durationTextCellsia = (today >= startDate) ? "Menos de un mes" : "Próximamente";
+                    }
+                    cellsiaDurationElement.textContent = durationTextCellsia +
+                                                    (cellsiaCalculatedMonths > 0 && today >= startDate ? " (En curso)" :
+                                                    (cellsiaCalculatedMonths === 0 && today >= startDate ? " (Iniciando)" :
+                                                    (today < startDate ? " (Próximamente)" : "")));
+                }
+            }
+
             if (roviExperienceItem && roviDurationElement) {
                 const startDateString = roviExperienceItem.getAttribute('data-start-date');
                 if (startDateString) {
@@ -2396,7 +2449,7 @@
                 }
             });
 
-            const totalExperienceAllMonths = roviCalculatedMonths + juzgadoDurationMonthsAttr + dlaPiperDurationMonthsAttr + sindicGreugesDurationMonthsAttr;
+            const totalExperienceAllMonths = cellsiaCalculatedMonths + roviCalculatedMonths + juzgadoDurationMonthsAttr + dlaPiperDurationMonthsAttr + sindicGreugesDurationMonthsAttr;
 
             if (totalExperienceDurationElement) {
                 totalExperienceDurationElement.textContent = "(" + formatDurationToYearsMonths(totalExperienceAllMonths) + ")";
@@ -2413,6 +2466,7 @@
                 }
             }
 
+            updateProgressBar(cellsiaTimelineBar, cellsiaCalculatedMonths, totalExperienceAllMonths);
             updateProgressBar(roviTimelineBar, roviCalculatedMonths, totalExperienceAllMonths);
             updateProgressBar(juzgadoTimelineBar, juzgadoDurationMonthsAttr, totalExperienceAllMonths);
             updateProgressBar(dlaTimelineBar, dlaPiperDurationMonthsAttr, totalExperienceAllMonths);
@@ -2759,7 +2813,7 @@
                 contactCTAtitle: "¿Conectamos?",
                 contactCTAtext: "Si mi perfil te ha resultado interesante, estás buscando un profesional con mis habilidades, o simplemente te gustaría explorar posibles colaboraciones o intercambiar ideas, estaré encantado de que te pongas en contacto conmigo a través de los siguientes canales:",
                 contactCTASendMessage: "Enviar un Mensaje",
-                footerCopyright: "© 2026 Isaac Yael Sandiumenge Torres.",
+                footerCopyright: "© 2025 Isaac Yael Sandiumenge Torres.",
                 footerPolicy: "Política de Privacidad",
                 footerDisclaimer: "Este es un espacio personal. Las opiniones expresadas aquí son propias y no representan necesariamente las de mi empleador.",
                 footerTechSide: "Descubre mi lado más tech"
@@ -2807,7 +2861,7 @@
                 contactCTAtitle: "Let's Connect?",
                 contactCTAtext: "If you found my profile interesting, are looking for a professional with my skills, or would simply like to explore possible collaborations or exchange ideas, I would be delighted for you to contact me through the following channels:",
                 contactCTASendMessage: "Send a Message",
-                footerCopyright: "© 2026 Isaac Yael Sandiumenge Torres.",
+                footerCopyright: "© 2025 Isaac Yael Sandiumenge Torres.",
                 footerPolicy: "Privacy Policy",
                 footerDisclaimer: "This is a personal space. The opinions expressed here are my own and do not necessarily represent those of my employer.",
                 footerTechSide: "Discover my tech side"
